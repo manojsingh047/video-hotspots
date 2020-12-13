@@ -2,8 +2,9 @@
 
   <div id="video_box" class="h-w-100">
     <div id="video_overlays" class="h-w-100">
-      hello
-
+      <ng-container *ngFor="let hotspot of hotspotInView">
+        <hotspot [label]="hotspot.label"></hotspot>
+      </ng-container>
     </div>
     <div class="h-w-100">
       <video src="./../assets/Home-Option02.mp4" (timeupdate)="onTimeupdate($event)" controls autoplay #videoPlayer>
@@ -17,4 +18,9 @@
     </div>
   </div>
 
+  <!-- <div style="position: absolute; left: 100px; top: 100px;">
+                <hotspot [label]="'test hotel some'">
+              
+                </hotspot>
+          </div> -->
 </div>

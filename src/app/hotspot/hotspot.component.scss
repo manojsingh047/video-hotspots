@@ -1,0 +1,40 @@
+.hotspot-container{
+    display: inline-block;
+}
+.hotspot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    cursor: pointer;
+}
+.hotspot-blink{
+    width: 10px;
+    height: 10px;
+    background-color: #E24301;
+    border-radius: 50%;
+    animation: wave 1s infinite;
+}
+.hotspot-box{
+    padding: 14px 20px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: system-ui;
+    letter-spacing: 0px;
+    margin-right: 16px;
+    font-weight: 700;
+}
+
+@keyframes wave{
+    from{
+        box-shadow: 0 0 0 0 #E24301;
+    }
+    to{
+        box-shadow: 0 0 0 12px #fff;
+    }
+}

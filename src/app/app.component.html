@@ -1,13 +1,14 @@
 <div id="wrap_video" class="h-w-100">
-
   <div id="video_box" class="h-w-100">
-    <div id="video_overlays" class="h-w-100">
-      <ng-container *ngFor="let hotspot of hotspotInView">
-        <hotspot [label]="hotspot.label"></hotspot>
-      </ng-container>
+    <div id="video_overlays" class="h-w-100" style="height: 91%;">
+      <div [class.show]="viewToggle.showHotspot" class="step">
+        <ng-container *ngFor="let hotspot of hotspotInView">
+          <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
+        </ng-container>
+      </div>
     </div>
     <div class="h-w-100">
-      <video src="./../assets/Home-Option02.mp4" (timeupdate)="onTimeupdate($event)" controls autoplay #videoPlayer>
+      <video src="./../assets/Renato-city-First-Clip.mp4" (timeupdate)="onTimeupdate($event)" controls autoplay #videoPlayer>
         <!-- controls  -->
         <!-- autoplay -->
         Sorry, your browser doesn't support embedded videos,
@@ -17,10 +18,4 @@
       </video>
     </div>
   </div>
-
-  <!-- <div style="position: absolute; left: 100px; top: 100px;">
-                <hotspot [label]="'test hotel some'">
-              
-                </hotspot>
-          </div> -->
 </div>

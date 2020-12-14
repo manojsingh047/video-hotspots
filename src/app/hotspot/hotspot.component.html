@@ -1,10 +1,24 @@
-<div class="hotspot-container">
+<div class="hotspot-container pos-abs" [style]="{
+        top: hotspot.pos.top + 'px',
+        left: hotspot.pos.left + 'px'
+    }" (click)="onHotspotClick.emit(hotspot)">
     <div class="hotspot">
-        <div class="hotspot-box">
-            <!-- icon -->
-            {{label}}
-            <!-- arrow icon -->
-        </div>
-        <div class="hotspot-blink"></div>
+        <ng-container *ngIf="hotspot.isLabelOnLeft; else labelOnRight">
+            <div class="hotspot-box mr-16">
+                <!-- icon -->
+                {{hotspot.label}}
+                <!-- arrow icon -->
+            </div>
+            <div class="hotspot-blink"></div>
+        </ng-container>
+        
+        <ng-template #labelOnRight>
+            <div class="hotspot-blink"></div>
+            <div class="hotspot-box ml-16">
+                <!-- icon -->
+                {{hotspot.label}}
+                <!-- arrow icon -->
+            </div>
+        </ng-template>
     </div>
 </div>

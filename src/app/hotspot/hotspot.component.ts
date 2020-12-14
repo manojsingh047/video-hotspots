@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Hotspot } from '../app.component';
 
 @Component({
   selector: 'hotspot',
@@ -6,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./hotspot.component.scss']
 })
 export class HotspotComponent implements OnInit {
-
-  @Input() label: string;
+  @Input() hotspot: Hotspot;
+  @Output() onHotspotClick = new EventEmitter<Hotspot>();
 
   constructor() { }
 

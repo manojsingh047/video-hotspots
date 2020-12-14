@@ -50,4 +50,20 @@ html, body {
     height: 100%;
     overflow: hidden;
 }
-  
+
+.mr-16{
+    margin-right: 16px;
+}
+.ml-16{
+    margin-left: 16px;
+}
+.pos-abs{
+	position: absolute;
+}
+.show{
+	opacity: 1 !important;
+}
+.step{
+	opacity: 0;
+	transition: 0.8s ease-in-out all;
+}

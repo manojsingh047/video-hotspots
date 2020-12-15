@@ -67,3 +67,10 @@ html, body {
 	opacity: 0;
 	transition: 0.8s ease-in-out all;
 }
+.scale-0{
+	transform: scale(0);
+}
+.scale-1{
+	transition: 1s ease-in all;
+	transform: scale(1);
+}

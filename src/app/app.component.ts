@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 interface View { id: string; timeStamp: number[]; hotspots: Hotspot[]; };
-export interface Hotspot { id: string, label: string, pos: any, isLabelOnLeft: boolean, playTime: number };
+export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType };
+export enum HotspotType { video = "video", image = "image" };
 //in seconds
 const timeStamps = {
   allHotspots: [1.9, 2.1],
@@ -21,7 +22,8 @@ const views: View[] = [
           top: 76
         },
         isLabelOnLeft: false,
-        playTime: 2.4
+        playTime: 2.4,
+        type: HotspotType.video
       },
       {
         id: 'build-md',
@@ -31,7 +33,8 @@ const views: View[] = [
           top: 250
         },
         isLabelOnLeft: true,
-        playTime: 2.4
+        playTime: -1,
+        type: HotspotType.video
       },
       {
         id: 'rest',
@@ -41,7 +44,8 @@ const views: View[] = [
           top: 586
         },
         isLabelOnLeft: true,
-        playTime: 2.4
+        playTime: -1,
+        type: HotspotType.video
       },
       {
         id: 'hotel',
@@ -51,7 +55,8 @@ const views: View[] = [
           top: 481
         },
         isLabelOnLeft: true,
-        playTime: 2.4
+        playTime: -1,
+        type: HotspotType.video
       }
     ]
   },
@@ -67,7 +72,7 @@ const views: View[] = [
           top: 76
         },
         isLabelOnLeft: true,
-        playTime: 2.4
+        type: HotspotType.image
       },
       {
         id: 'vav',
@@ -77,7 +82,7 @@ const views: View[] = [
           top: 250
         },
         isLabelOnLeft: true,
-        playTime: 2.4
+        type: HotspotType.image
       },
       {
         id: 'chiller',
@@ -87,7 +92,7 @@ const views: View[] = [
           top: 586
         },
         isLabelOnLeft: true,
-        playTime: 2.4
+        type: HotspotType.image
       }
     ]
   }
@@ -98,6 +103,8 @@ const views: View[] = [
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('imageDiv') imageDiv: ElementRef
+
   videoPlayer: HTMLVideoElement;
 
   @ViewChild('videoPlayer')
@@ -108,7 +115,11 @@ export class AppComponent {
   hotspotInView: Hotspot[] = [];
   viewToggle = {
     showHotspot: false,
-    showCard: false
+    showCard: false,
+    showImageDiv: false
+  }
+  constructor(private renderer: Renderer2) {
+
   }
   onTimeupdate(event: any) {
 
@@ -130,10 +141,42 @@ export class AppComponent {
   }
   onHotspotClick(hotspot: Hotspot) {
     console.log(hotspot);
+    if (hotspot.playTime < 0) {
+      return;
+    }
     this.viewToggle.showHotspot = false;
     setTimeout(() => {
       this.hotspotInView.length = 0;
     }, 1000)
+
+    switch (hotspot.type) {
+      case HotspotType.image:
+        this.renderImage(hotspot);
+        break;
+      case HotspotType.video:
+        this.playHotspotVideo(hotspot);
+        break;
+    }
+
+  }
+  renderImage(hotspot: Hotspot) {
+    console.log('imageDiv', this.imageDiv);
+    // this.viewToggle.showImageEle = true;
+    const imgEle: HTMLImageElement = this.renderer.createElement('img');
+    imgEle.src = "./../assets/faded.jpg";
+    imgEle.className = "scale-0";
+    imgEle.style.position = "absolute";
+    // imgEle.style.left = hotspot.pos.left + 60 + 'px';
+    // imgEle.style.top = hotspot.pos.top + 'px';
+    imgEle.style.width = '100%';
+    imgEle.style.height = '100%';
+    this.renderer.appendChild(this.imageDiv.nativeElement, imgEle);
+
+    setTimeout(() => {
+      imgEle.className = "scale-0 scale-1";
+    }, 100);
+  }
+  playHotspotVideo(hotspot: Hotspot) {
     this.videoPlayer.currentTime = hotspot.playTime;
     this.videoPlayer.play();
   }

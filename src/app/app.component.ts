@@ -2,9 +2,10 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } fr
 // import $ from 'jquery';
 declare var $: any;
 
-interface View { id: string; timeStamp: number[]; hotspots: Hotspot[]; };
-export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType };
+interface View { id: string; timeStamp: number[]; hotspots: Hotspot[]; viewType: ViewType };
+export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType, isNoOp?: boolean };
 export enum HotspotType { video = "video", image = "image" };
+export enum ViewType { video = "video", image = "image" };
 //in seconds
 const timeStamps = {
   allHotspots: [2.2, 2.5],
@@ -15,6 +16,7 @@ const views: View[] = [
   {
     id: 'allHotspots',
     timeStamp: timeStamps.allHotspots,
+    viewType: ViewType.video,
     hotspots: [
       {
         id: 'build-lg',
@@ -36,7 +38,8 @@ const views: View[] = [
         },
         isLabelOnLeft: true,
         playTime: -1,
-        type: HotspotType.video
+        type: HotspotType.video,
+        isNoOp: true
       },
       {
         id: 'rest',
@@ -47,7 +50,8 @@ const views: View[] = [
         },
         isLabelOnLeft: true,
         playTime: -1,
-        type: HotspotType.video
+        type: HotspotType.video,
+        isNoOp: true
       },
       {
         id: 'hotel',
@@ -58,20 +62,22 @@ const views: View[] = [
         },
         isLabelOnLeft: false,
         playTime: -1,
-        type: HotspotType.video
+        type: HotspotType.video,
+        isNoOp: true
       }
     ]
   },
   {
     id: 'lgBuild',
     timeStamp: timeStamps.lgBuild,
+    viewType: ViewType.image,
     hotspots: [
       {
         id: 'continue',
         label: 'Continue Tour',
         pos: {
-          left: 927,  //in px
-          top: 76
+          left: 827,
+          top: 176
         },
         playTime: 8.1,
         isLabelOnLeft: false,
@@ -81,18 +87,19 @@ const views: View[] = [
         id: 'vav',
         label: 'vav reheat',
         pos: {
-          left: 490,
-          top: 250
+          left: 208,
+          top: 253
         },
         isLabelOnLeft: true,
-        type: HotspotType.image
+        type: HotspotType.image,
+        isNoOp: true
       },
       {
         id: 'chiller',
         label: 'chiller plant',
         pos: {
-          left: 648,
-          top: 586
+          left: 908,
+          top: 766
         },
         isLabelOnLeft: false,
         type: HotspotType.image
@@ -129,17 +136,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    $('#zt-container').zoomtour({
-      // if true the tags are rotated depending on their position
-      rotation: false,
-      // zoom out animation easing. Example: easeOutBounce , easeOutBack	
-      zoominEasing: '',
-      // zoom out animation easing
-      zoomoutEasing: ''
-    });
-    // setTimeout(() => {
-    //   this.videoPlayer.play();
-    // }, 100)
   }
   onTimeupdate(event: any) {
 
@@ -157,11 +153,20 @@ export class AppComponent implements AfterViewInit {
 
     this.videoPlayer.pause();
     this.viewToggle.showHotspot = true;
-    this.renderHotspots(view.hotspots);
+
+
+    switch (view.viewType) {
+      case ViewType.image:
+        this.renderImage(view.hotspots);
+        break;
+      case ViewType.video:
+        this.renderHotspots(view.hotspots);
+        break;
+    }
   }
   onHotspotClick(hotspot: Hotspot) {
     console.log(hotspot);
-    if (hotspot.playTime < 0) {
+    if (hotspot.isNoOp) {
       return;
     }
     this.viewToggle.showHotspot = false;
@@ -171,30 +176,47 @@ export class AppComponent implements AfterViewInit {
 
     switch (hotspot.type) {
       case HotspotType.image:
-        this.renderImage(hotspot);
+        // this.renderImage(hotspot);
         break;
       case HotspotType.video:
         this.playHotspotVideo(hotspot);
         break;
     }
-
   }
-  renderImage(hotspot: Hotspot) {
+  renderImage(hotspots: Hotspot[]) {
     console.log('imageDiv', this.imageDiv);
-    // this.viewToggle.showImageEle = true;
-    const imgEle: HTMLImageElement = this.renderer.createElement('img');
-    imgEle.src = "./../assets/faded.png";
-    imgEle.className = "scale-0";
-    imgEle.style.position = "absolute";
-    // imgEle.style.left = hotspot.pos.left + 60 + 'px';
-    // imgEle.style.top = hotspot.pos.top + 'px';
-    imgEle.style.width = '100%';
-    imgEle.style.height = '100%';
-    this.renderer.appendChild(this.imageDiv.nativeElement, imgEle);
+
+    this.viewToggle.showImageDiv = true;
 
     setTimeout(() => {
-      imgEle.className = "scale-0 scale-1";
-    }, 100);
+      $('#zt-container').zoomtour({
+        // if true the tags are rotated depending on their position
+        rotation: false,
+        // zoom out animation easing. Example: easeOutBounce , easeOutBack	
+        zoominEasing: '',
+        // zoom out animation easing
+        zoomoutEasing: ''
+      });
+      setTimeout(() => {
+        this.renderHotspots(hotspots);
+      }, 100)
+
+    }, 100)
+
+    // this.viewToggle.showImageEle = true;
+    // const imgEle: HTMLImageElement = this.renderer.createElement('img');
+    // imgEle.src = "./../assets/faded.png";
+    // imgEle.className = "scale-0";
+    // imgEle.style.position = "absolute";
+    // imgEle.style.left = hotspot.pos.left + 60 + 'px';
+    // imgEle.style.top = hotspot.pos.top + 'px';
+    // imgEle.style.width = '100%';
+    // imgEle.style.height = '100%';
+    // this.renderer.appendChild(this.imageDiv.nativeElement, imgEle);
+
+    // setTimeout(() => {
+    //   imgEle.className = "scale-0 scale-1";
+    // }, 100);
   }
   playHotspotVideo(hotspot: Hotspot) {
     console.log('playing...');

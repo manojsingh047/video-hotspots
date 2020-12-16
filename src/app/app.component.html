@@ -1,39 +1,34 @@
 <div id="wrap_video" class="h-w-100">
   <div id="video_box" class="h-w-100">
-    <div id="video_overlays" class="h-w-100" style="height: 91%;">
-      <div [class.show]="viewToggle.showHotspot" class="step">
+    <!-- <div id="video_overlays" class="h-w-100" style="height: 91%;"> -->
+    <div id="video_overlays" class="h-w-100">
+      <div [class.show]="viewToggle.showHotspot" class="hotspot-container step">
         <ng-container *ngFor="let hotspot of hotspotInView">
           <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
         </ng-container>
       </div>
-      <div #imageDiv>
-      </div>
-    </div>
-    <div class="h-w-100">
-      <video src="./../assets/video.mp4" (timeupdate)="onTimeupdate($event)" controls autoplay muted #videoPlayer>
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-      </div>
-      </div>
-      </div>
-      <!-- controls playsinline autoplay muted loop -->
-
-<div id="zt-container" class="zt-container">
-  <div class="zt-item" data-id="zt-item-1">
-    <img class="zt-current" src="./../assets/jquery-zoom/images/image1.jpg" />
-    <div class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5" data-speed="700" data-delay="50"
-      style="top:138px;left:151px;"></div>
-    <div class="zt-tag" data-dir="1" data-link="zt-item-3" data-zoom="6" data-speed="700" data-delay="50"
-      style="top:253px;left:520px;"></div>
-  </div>
-  <div class="zt-item" data-id="zt-item-2">
-    <img class="zt-current" src="./../assets/jquery-zoom/images/image1_1.jpg" />
-    <div class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5" data-speed="500" data-delay="0">
-    </div>
-  </div>
-  <div class="zt-item" data-id="zt-item-3">
-    <img class="zt-current" src="./../assets/jquery-zoom/images/image2_2.jpg" />
-    <div class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="6" data-speed="500" data-delay="0">
+      <div *ngIf="viewToggle.showImageDiv" class="h-w-100">
+        <div id="zt-container" class="zt-container">
+          <div class="zt-item" data-id="zt-item-1">
+            <img class="zt-current" src="./../assets/lg-build.png" />
+            <div class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5" data-speed="700" data-delay="50"
+              style="top:138px;left:151px;"></div>
+          </div>
+          <div class="zt-item" data-id="zt-item-2">
+            <img class="zt-current" src="./../assets/jquery-zoom/images/image1_1.jpg" />
+            <div class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5" data-speed="500" data-delay="0">
+            </div>
+            </div>
+            </div>
+            </div>
+            <div #imageDiv>
+            </div>
+            </div>
+            <div class="h-w-100">
+              <video src="./../assets/video/video.mp4" (timeupdate)="onTimeupdate($event)" autoplay muted #videoPlayer>
+                Sorry, your browser doesn't support embedded videos.
+              </video>
     </div>
   </div>
 </div>
+<!-- controls playsinline autoplay muted loop -->

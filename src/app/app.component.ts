@@ -1,12 +1,14 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+// import $ from 'jquery';
+declare var $: any;
 
 interface View { id: string; timeStamp: number[]; hotspots: Hotspot[]; };
 export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType };
 export enum HotspotType { video = "video", image = "image" };
 //in seconds
 const timeStamps = {
-  allHotspots: [1.9, 2.1],
-  lgBuild: [4.4, 4.6],
+  allHotspots: [2.2, 2.5],
+  lgBuild: [5.8, 6.1],
 };
 
 const views: View[] = [
@@ -18,19 +20,19 @@ const views: View[] = [
         id: 'build-lg',
         label: 'Large Size Building',
         pos: {
-          left: 927,  //in px
-          top: 76
+          left: 907,  //in px
+          top: 53
         },
         isLabelOnLeft: false,
-        playTime: 2.4,
+        playTime: 4.0,
         type: HotspotType.video
       },
       {
         id: 'build-md',
         label: 'Medium Size Building',
         pos: {
-          left: 490,
-          top: 250
+          left: 470,
+          top: 225
         },
         isLabelOnLeft: true,
         playTime: -1,
@@ -40,8 +42,8 @@ const views: View[] = [
         id: 'rest',
         label: 'Restaurant',
         pos: {
-          left: 648,
-          top: 586
+          left: 628,
+          top: 561
         },
         isLabelOnLeft: true,
         playTime: -1,
@@ -51,8 +53,8 @@ const views: View[] = [
         id: 'hotel',
         label: 'Hotel',
         pos: {
-          left: 1294,
-          top: 481
+          left: 1263,
+          top: 455
         },
         isLabelOnLeft: true,
         playTime: -1,
@@ -65,14 +67,15 @@ const views: View[] = [
     timeStamp: timeStamps.lgBuild,
     hotspots: [
       {
-        id: 'pipe',
-        label: '4 pipe fcu',
+        id: 'continue',
+        label: 'Continue Tour',
         pos: {
           left: 927,  //in px
           top: 76
         },
-        isLabelOnLeft: true,
-        type: HotspotType.image
+        playTime: 8.1,
+        isLabelOnLeft: false,
+        type: HotspotType.video
       },
       {
         id: 'vav',
@@ -91,7 +94,7 @@ const views: View[] = [
           left: 648,
           top: 586
         },
-        isLabelOnLeft: true,
+        isLabelOnLeft: false,
         type: HotspotType.image
       }
     ]
@@ -102,14 +105,17 @@ const views: View[] = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   @ViewChild('imageDiv') imageDiv: ElementRef
 
   videoPlayer: HTMLVideoElement;
 
   @ViewChild('videoPlayer')
   set mainVideoEl(el: ElementRef) {
-    this.videoPlayer = el.nativeElement;
+    console.log($('body'));
+    setTimeout(() => {
+      this.videoPlayer = el.nativeElement;
+    }, 0)
   }
 
   hotspotInView: Hotspot[] = [];
@@ -120,6 +126,20 @@ export class AppComponent {
   }
   constructor(private renderer: Renderer2) {
 
+  }
+
+  ngAfterViewInit() {
+    $('#zt-container').zoomtour({
+      // if true the tags are rotated depending on their position
+      rotation: false,
+      // zoom out animation easing. Example: easeOutBounce , easeOutBack	
+      zoominEasing: '',
+      // zoom out animation easing
+      zoomoutEasing: ''
+    });
+    // setTimeout(() => {
+    //   this.videoPlayer.play();
+    // }, 100)
   }
   onTimeupdate(event: any) {
 
@@ -163,7 +183,7 @@ export class AppComponent {
     console.log('imageDiv', this.imageDiv);
     // this.viewToggle.showImageEle = true;
     const imgEle: HTMLImageElement = this.renderer.createElement('img');
-    imgEle.src = "./../assets/faded.jpg";
+    imgEle.src = "./../assets/faded.png";
     imgEle.className = "scale-0";
     imgEle.style.position = "absolute";
     // imgEle.style.left = hotspot.pos.left + 60 + 'px';
@@ -177,6 +197,8 @@ export class AppComponent {
     }, 100);
   }
   playHotspotVideo(hotspot: Hotspot) {
+    console.log('playing...');
+
     this.videoPlayer.currentTime = hotspot.playTime;
     this.videoPlayer.play();
   }

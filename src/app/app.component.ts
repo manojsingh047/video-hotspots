@@ -56,7 +56,7 @@ const views: View[] = [
           left: 1263,
           top: 455
         },
-        isLabelOnLeft: true,
+        isLabelOnLeft: false,
         playTime: -1,
         type: HotspotType.video
       }

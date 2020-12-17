@@ -332,13 +332,13 @@
 									});
 									
 									// hide / show tags on mouse hover
-									$ztcontainer.bind('mouseenter.zoomtour', function( e ) {
-										if( !cache.animTour )
-											$zttags.show();
-									}).bind('mouseleave.zoomtour', function( e ) {
-										if( !cache.animTour )
-											$zttags.hide();
-									});
+									// $ztcontainer.bind('mouseenter.zoomtour', function( e ) {
+									// 	if( !cache.animTour )
+									// 		$zttags.show();
+									// }).bind('mouseleave.zoomtour', function( e ) {
+									// 	if( !cache.animTour )
+									// 		$zttags.hide();
+									// });
 									
 								}
 							}).attr( 'src', $(this).attr('src') );

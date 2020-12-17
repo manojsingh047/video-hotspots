@@ -27,7 +27,9 @@ const views: View[] = [
         },
         isLabelOnLeft: false,
         playTime: 4.0,
-        type: HotspotType.video
+        type: HotspotType.video,
+        isNoOp: true
+
       },
       {
         id: 'build-md',
@@ -37,9 +39,9 @@ const views: View[] = [
           top: 225
         },
         isLabelOnLeft: true,
-        playTime: -1,
+        playTime: 4.0,
         type: HotspotType.video,
-        isNoOp: true
+        // isNoOp: true
       },
       {
         id: 'rest',
@@ -136,6 +138,14 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    $('#zt-container').zoomtour({
+      // if true the tags are rotated depending on their position
+      rotation: false,
+      // zoom out animation easing. Example: easeOutBounce , easeOutBack	
+      zoominEasing: '',
+      // zoom out animation easing
+      zoomoutEasing: ''
+    });
   }
   onTimeupdate(event: any) {
 
@@ -189,34 +199,8 @@ export class AppComponent implements AfterViewInit {
     this.viewToggle.showImageDiv = true;
 
     setTimeout(() => {
-      $('#zt-container').zoomtour({
-        // if true the tags are rotated depending on their position
-        rotation: false,
-        // zoom out animation easing. Example: easeOutBounce , easeOutBack	
-        zoominEasing: '',
-        // zoom out animation easing
-        zoomoutEasing: ''
-      });
-      setTimeout(() => {
-        this.renderHotspots(hotspots);
-      }, 100)
-
+      this.renderHotspots(hotspots);
     }, 100)
-
-    // this.viewToggle.showImageEle = true;
-    // const imgEle: HTMLImageElement = this.renderer.createElement('img');
-    // imgEle.src = "./../assets/faded.png";
-    // imgEle.className = "scale-0";
-    // imgEle.style.position = "absolute";
-    // imgEle.style.left = hotspot.pos.left + 60 + 'px';
-    // imgEle.style.top = hotspot.pos.top + 'px';
-    // imgEle.style.width = '100%';
-    // imgEle.style.height = '100%';
-    // this.renderer.appendChild(this.imageDiv.nativeElement, imgEle);
-
-    // setTimeout(() => {
-    //   imgEle.className = "scale-0 scale-1";
-    // }, 100);
   }
   playHotspotVideo(hotspot: Hotspot) {
     console.log('playing...');

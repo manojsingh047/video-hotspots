@@ -30,15 +30,14 @@ img.zt-temp{
 .zt-tag-back{
 	width:30px;
 	height:20px;
-	left:50%;
-	bottom:0px;
-	margin-left:-16px;
-	background:#fff url(../images/back.png) no-repeat center center;
-	-moz-border-radius:5px 5px 0px 0px;
-	-webkit-border-radius:5px 5px 0px 0px;
-	border-radius:5px 5px 0px 0px;
-	border:1px solid #fff;
-	border-bottom:none;
+}
+.zt-tag-back span{
+    color: black;
+    font-size: 24px;
+    font-weight: 700;
+	text-decoration: dashed;
+	color: black;
+	font-size: 16px;
 }
 .zt-loading{
 	position:absolute;

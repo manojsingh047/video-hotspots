@@ -131,7 +131,8 @@ export class AppComponent implements AfterViewInit {
   viewToggle = {
     showHotspot: false,
     showCard: false,
-    showImageDiv: false
+    showImageDiv: false,
+    showTransitionedImage: false,
   }
   constructor(private renderer: Renderer2) {
 
@@ -199,6 +200,12 @@ export class AppComponent implements AfterViewInit {
     setTimeout(() => {
       this.renderHotspots(hotspots);
     }, 100)
+  }
+  renderTransitionedImage() {
+    this.hideHotspotView();
+    setTimeout(() => {
+      this.viewToggle.showTransitionedImage = true;
+    }, 1200)
   }
   hideHotspotView() {
     this.viewToggle.showHotspot = false;

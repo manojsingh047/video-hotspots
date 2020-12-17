@@ -1,7 +1,7 @@
 <div id="wrap_video" class="h-w-100">
   <div id="video_box" class="h-w-100">
-    <div id="video_overlays" class="h-w-100" style="height: 91%;">
-    <!-- <div id="video_overlays" class="h-w-100"> -->
+    <!-- <div id="video_overlays" class="h-w-100" style="height: 91%;"> -->
+    <div id="video_overlays" class="h-w-100">
       <div [class.show]="viewToggle.showHotspot" class="hotspot-container step">
         <ng-container *ngFor="let hotspot of hotspotInView">
           <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
@@ -11,12 +11,14 @@
         <div id="zt-container" class="zt-container">
           <div class="zt-item" data-id="zt-item-1">
             <img class="zt-current" src="./../assets/lg-build.png" />
-            <div (click)="hideHotspotView()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5" data-speed="700"
+            <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
+              data-speed="700"
               data-delay="50"
               style="top:138px;left:151px;"></div>
           </div>
           <div class="zt-item" data-id="zt-item-2">
             <img class="zt-current" src="./../assets/faded.png" />
+            <img [class.show]="viewToggle.showTransitionedImage" class="step pos-abs h-w-100" src="./../assets/color.png" />
             <div (click)="showHotspotView()" class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5"
               data-speed="500" data-delay="0">
               <span>back</span>

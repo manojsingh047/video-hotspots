@@ -1,6 +1,7 @@
 <div id="wrap_video" class="h-w-100">
   <div id="video_box" class="h-w-100">
     <div id="video_overlays" class="h-w-100" style="height: 91%;">
+    <!-- <div id="video_overlays" class="h-w-100"> -->
       <div [class.show]="viewToggle.showHotspot" class="hotspot-container step">
         <ng-container *ngFor="let hotspot of hotspotInView">
           <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
@@ -25,7 +26,11 @@
       </div>
     </div>
     <div class="h-w-100">
-      <video src="./../assets/video/video.mp4" (timeupdate)="onTimeupdate($event)" controls autoplay muted #videoPlayer>
+      <video src="./../assets/video/video.mp4" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
+        #videoPlayer>
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+      <video src="./../assets/video/video.mp4" [autoplay]="true" [muted]="true" #videoPlayer>
         Sorry, your browser doesn't support embedded videos.
       </video>
     </div>

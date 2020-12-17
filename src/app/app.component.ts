@@ -148,7 +148,6 @@ export class AppComponent implements AfterViewInit {
     });
   }
   onTimeupdate(event: any) {
-
     console.log('current: ', this.videoPlayer.currentTime);
     const view = views.find(view => (
       parseFloat(this.videoPlayer.currentTime.toFixed(1)) >= view.timeStamp[0]

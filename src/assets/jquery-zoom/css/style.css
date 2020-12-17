@@ -30,6 +30,10 @@ img.zt-temp{
 .zt-tag-back{
 	width:30px;
 	height:20px;
+	border:none;
+	background:none;
+	cursor:pointer;
+	box-shadow:none;
 }
 .zt-tag-back span{
     color: black;

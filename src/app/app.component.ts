@@ -194,16 +194,23 @@ export class AppComponent implements AfterViewInit {
   }
   renderImage(hotspots: Hotspot[]) {
     console.log('imageDiv', this.imageDiv);
-
     this.viewToggle.showImageDiv = true;
 
     setTimeout(() => {
       this.renderHotspots(hotspots);
     }, 100)
   }
+  hideHotspotView() {
+    this.viewToggle.showHotspot = false;
+  }
+  showHotspotView() {
+    this.viewToggle.showHotspot = true;
+  }
   playHotspotVideo(hotspot: Hotspot) {
     console.log('playing...');
-
+    this.viewToggle.showHotspot = false;
+    this.viewToggle.showImageDiv = false;
+    this.viewToggle.showCard = false;
     this.videoPlayer.currentTime = hotspot.playTime;
     this.videoPlayer.play();
   }

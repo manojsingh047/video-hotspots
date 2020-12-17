@@ -11,12 +11,14 @@
         <div id="zt-container" class="zt-container">
           <div class="zt-item" data-id="zt-item-1">
             <img class="zt-current" src="./../assets/lg-build.png" />
-            <div class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5" data-speed="700" data-delay="50"
+            <div (click)="hideHotspotView()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5" data-speed="700"
+              data-delay="50"
               style="top:138px;left:151px;"></div>
           </div>
           <div class="zt-item" data-id="zt-item-2">
             <img class="zt-current" src="./../assets/faded.png" />
-            <div class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5" data-speed="500" data-delay="0">
+            <div (click)="showHotspotView()" class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5"
+              data-speed="500" data-delay="0">
               <span>back</span>
             </div>
           </div>

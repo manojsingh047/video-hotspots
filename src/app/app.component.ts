@@ -168,8 +168,7 @@ export class AppComponent implements AfterViewInit {
     console.log('view: ', view);
 
     this.videoPlayer.pause();
-    this.viewToggle.showHotspot = true;
-
+    this.showHotspotView();
 
     switch (view.viewType) {
       case ViewType.image:
@@ -182,14 +181,14 @@ export class AppComponent implements AfterViewInit {
     }
   }
   renderCard(hotspots: Hotspot[]) {
-    this.viewToggle.showCard = true;
+    this.showCardView();
   }
   onHotspotClick(hotspot: Hotspot) {
     console.log(hotspot);
     if (hotspot.isNoOp) {
       return;
     }
-    this.viewToggle.showHotspot = false;
+    this.hideHotspotView();
     setTimeout(() => {
       this.hotspotInView.length = 0;
     }, 1000)
@@ -205,8 +204,7 @@ export class AppComponent implements AfterViewInit {
   }
   renderImage(hotspots: Hotspot[]) {
     console.log('imageDiv', this.imageDiv);
-    this.viewToggle.showImageDiv = true;
-
+    this.showImageView();
     setTimeout(() => {
       this.renderHotspots(hotspots);
     }, 100)
@@ -218,8 +216,8 @@ export class AppComponent implements AfterViewInit {
       this.viewToggle.showTransitionedImage = true;
     }, 1200)
   }
-  hideCardView() {
-    this.viewToggle.showCard = false;
+  showCardView() {
+    this.viewToggle.showCard = true;
   }
   hideCardView() {
     this.viewToggle.showCard = false;
@@ -230,11 +228,17 @@ export class AppComponent implements AfterViewInit {
   showHotspotView() {
     this.viewToggle.showHotspot = true;
   }
+  hideImageView() {
+    this.viewToggle.showImageDiv = false;
+  }
+  showImageView() {
+    this.viewToggle.showImageDiv = true;
+  }
   playHotspotVideo(hotspot: Hotspot) {
     console.log('playing...');
-    this.viewToggle.showHotspot = false;
-    this.viewToggle.showImageDiv = false;
-    this.viewToggle.showCard = false;
+    this.hideHotspotView();
+    this.hideImageView();
+    this.hideCardView()
     this.videoPlayer.currentTime = hotspot.playTime;
     this.videoPlayer.play();
   }

@@ -22,32 +22,32 @@ const views: View[] = [
         id: 'build-lg',
         label: 'Large Size Building',
         pos: {
-          left: 907,  //in px
+          left: 900,  //in px
           top: 53
         },
         isLabelOnLeft: false,
         playTime: 4.0,
         type: HotspotType.video,
-        isNoOp: true
+        isNoOp: false
 
       },
       {
         id: 'build-md',
         label: 'Medium Size Building',
         pos: {
-          left: 470,
+          left: 436,
           top: 225
         },
         isLabelOnLeft: true,
         playTime: 4.0,
         type: HotspotType.video,
-        // isNoOp: true
+        isNoOp: true
       },
       {
         id: 'rest',
         label: 'Restaurant',
         pos: {
-          left: 628,
+          left: 620,
           top: 561
         },
         isLabelOnLeft: true,
@@ -59,7 +59,7 @@ const views: View[] = [
         id: 'hotel',
         label: 'Hotel',
         pos: {
-          left: 1263,
+          left: 1433,
           top: 455
         },
         isLabelOnLeft: false,
@@ -89,7 +89,7 @@ const views: View[] = [
         id: 'vav',
         label: 'vav reheat',
         pos: {
-          left: 208,
+          left: 200,
           top: 253
         },
         isLabelOnLeft: true,

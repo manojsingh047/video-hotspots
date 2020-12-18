@@ -12,9 +12,7 @@
           <div class="zt-item" data-id="zt-item-1">
             <img class="zt-current" src="./../assets/lg-build.png" />
             <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
-              data-speed="700"
-              data-delay="50"
-              style="top:138px;left:151px;"></div>
+              data-speed="900" data-delay="0" style="top: 787px;left: 916px;"></div>
           </div>
           <div class="zt-item" data-id="zt-item-2">
             <img class="zt-current" src="./../assets/faded.png" />
@@ -32,9 +30,6 @@
     <div class="h-w-100">
       <video src="./../assets/video/video.mp4" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
         #videoPlayer>
-        Sorry, your browser doesn't support embedded videos.
-      </video>
-      <video src="./../assets/video/video.mp4" [autoplay]="true" [muted]="true" #videoPlayer>
         Sorry, your browser doesn't support embedded videos.
       </video>
     </div>

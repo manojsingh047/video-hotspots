@@ -48,7 +48,8 @@ table {
 }
 html, body {
     height: 100%;
-    overflow: hidden;
+	overflow: hidden;
+	font-family: system-ui;
 }
 
 .mr-16{
@@ -106,4 +107,17 @@ html, body {
 .hover-orange:hover{
 	color: #E24301;
     transition-duration: 0.5s;
+}
+.h-full{
+	height: 100%;
+}
+.r-0{
+	right: 0;
+}
+.t-0{
+	top: 0;
+}
+.d-f-a-c{
+	display: flex;
+	align-items: center;
 }

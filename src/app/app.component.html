@@ -27,7 +27,26 @@
           </div>
         </div>
       </div>
-      <div #imageDiv>
+      <div [class.show]="viewToggle.showCard" class="step">
+        <div #cardEle class="pos-abs d-f-a-c t-0 r-0 h-full">
+          <div class="card-container">
+            <div class="title-box">
+              <div class="title">
+                LARGE BUILDING
+              </div>
+              <div class="dash-orange"></div>
+            </div>
+            <br />
+            <br />
+            <div class="body">
+              <span>While most buildings in the U.S. are small, large commercial buildings tend to account for
+                the most total floorspace. With upwards of 500,000 square feet, these structures utilize central air and
+                water plants, air handlers, and a VAV system. Depending on climate zone, it may use electric or
+                water-based reheat.</span>
+            </div>
+            <div class="tab-container"></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="h-w-100">

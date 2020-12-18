@@ -174,11 +174,15 @@ export class AppComponent implements AfterViewInit {
     switch (view.viewType) {
       case ViewType.image:
         this.renderImage(view.hotspots);
+        this.renderCard(view.hotspots);
         break;
       case ViewType.video:
         this.renderHotspots(view.hotspots);
         break;
     }
+  }
+  renderCard(hotspots: Hotspot[]) {
+    this.viewToggle.showCard = true;
   }
   onHotspotClick(hotspot: Hotspot) {
     console.log(hotspot);
@@ -209,9 +213,16 @@ export class AppComponent implements AfterViewInit {
   }
   renderTransitionedImage() {
     this.hideHotspotView();
+    this.hideCardView();
     setTimeout(() => {
       this.viewToggle.showTransitionedImage = true;
     }, 1200)
+  }
+  hideCardView() {
+    this.viewToggle.showCard = false;
+  }
+  hideCardView() {
+    this.viewToggle.showCard = false;
   }
   hideHotspotView() {
     this.viewToggle.showHotspot = false;

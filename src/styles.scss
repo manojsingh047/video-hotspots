@@ -65,16 +65,32 @@ html, body {
 }
 .step{
 	opacity: 0;
-	transition: 0.8s ease-in-out all;
+	transition: 0.9s ease-in all;
 }
 .scale-0{
 	transform: scale(0);
 }
 .scale-1{
-	transition: 1s ease-in all;
+	transition: 0.9s ease-in all;
 	transform: scale(1);
 }
 .h-w-100{
     width: 100%;
     height: 100%;
+}
+.m-l-16{
+	margin-left: 16px;	
+}
+.m-t-10{
+	margin-top: 10px;	
+}
+.m-r-11{
+	margin-right: 11px;	
+}
+.w-8{
+	width: 8px;	
+}
+.d-f-j-c{
+	display: flex;
+    justify-content: center;
 }

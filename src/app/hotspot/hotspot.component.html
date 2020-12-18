@@ -5,19 +5,19 @@
     <div class="hotspot">
         <ng-container *ngIf="hotspot.isLabelOnLeft; else labelOnRight">
             <div class="hotspot-box mr-16">
-                <!-- icon -->
+                <img [src]="hotspot.img" alt="" class="m-r-11">
                 {{hotspot.label}}
-                <!-- arrow icon -->
+                <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
             </div>
             <div class="hotspot-blink"></div>
         </ng-container>
-        
+
         <ng-template #labelOnRight>
             <div class="hotspot-blink"></div>
             <div class="hotspot-box ml-16">
-                <!-- icon -->
+                <img [src]="hotspot.img" alt="" class="m-r-11">
                 {{hotspot.label}}
-                <!-- arrow icon -->
+                <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
             </div>
         </ng-template>
     </div>

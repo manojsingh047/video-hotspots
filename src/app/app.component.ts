@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } fr
 declare var $: any;
 
 interface View { id: string; timeStamp: number[]; hotspots: Hotspot[]; viewType: ViewType };
-export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType, isNoOp?: boolean };
+export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType, isNoOp?: boolean, img: string };
 export enum HotspotType { video = "video", image = "image" };
 export enum ViewType { video = "video", image = "image" };
 //in seconds
@@ -23,37 +23,40 @@ const views: View[] = [
         label: 'Large Size Building',
         pos: {
           left: 900,  //in px
-          top: 53
+          top: 95
         },
         isLabelOnLeft: false,
         playTime: 4.0,
         type: HotspotType.video,
-        isNoOp: false
+        isNoOp: false,
+        img: './../assets/build-lg.svg'
 
       },
       {
         id: 'build-md',
         label: 'Medium Size Building',
         pos: {
-          left: 436,
+          left: 382,
           top: 225
         },
         isLabelOnLeft: true,
         playTime: 4.0,
         type: HotspotType.video,
-        isNoOp: true
+        isNoOp: true,
+        img: './../assets/build-md.svg'
       },
       {
         id: 'rest',
         label: 'Restaurant',
         pos: {
-          left: 620,
+          left: 550,
           top: 561
         },
         isLabelOnLeft: true,
         playTime: -1,
         type: HotspotType.video,
-        isNoOp: true
+        isNoOp: true,
+        img: './../assets/rest.svg'
       },
       {
         id: 'hotel',
@@ -65,7 +68,8 @@ const views: View[] = [
         isLabelOnLeft: false,
         playTime: -1,
         type: HotspotType.video,
-        isNoOp: true
+        isNoOp: true,
+        img: './../assets/hotel.svg'
       }
     ]
   },
@@ -83,7 +87,8 @@ const views: View[] = [
         },
         playTime: 8.1,
         isLabelOnLeft: false,
-        type: HotspotType.video
+        type: HotspotType.video,
+        img: './../assets/group.svg'
       },
       {
         id: 'vav',
@@ -94,7 +99,8 @@ const views: View[] = [
         },
         isLabelOnLeft: true,
         type: HotspotType.image,
-        isNoOp: true
+        isNoOp: true,
+        img: './../assets/group.svg'
       },
       {
         id: 'chiller',
@@ -104,7 +110,8 @@ const views: View[] = [
           top: 766
         },
         isLabelOnLeft: false,
-        type: HotspotType.image
+        type: HotspotType.image,
+        img: './../assets/group.svg'
       }
     ]
   }
@@ -121,7 +128,6 @@ export class AppComponent implements AfterViewInit {
 
   @ViewChild('videoPlayer')
   set mainVideoEl(el: ElementRef) {
-    console.log($('body'));
     setTimeout(() => {
       this.videoPlayer = el.nativeElement;
     }, 0)

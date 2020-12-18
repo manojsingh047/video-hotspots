@@ -19,7 +19,7 @@ img.zt-temp{
 	position:absolute;
 	z-index:10;
 	/* border:2px solid #fff; */
-    width: 194px;
+    width: 264px;
 	height: 39px;
 	cursor:pointer;
 }
@@ -38,7 +38,8 @@ img.zt-temp{
     font-size: 32px;
     display: inline-block;
     margin: 20px 20px;
-    border-bottom: 1px dashed gray;
+	border-bottom: 1px dashed gray;
+	z-index: 3;
 }
 .zt-loading{
 	position:absolute;

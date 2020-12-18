@@ -79,7 +79,7 @@ const views: View[] = [
     viewType: ViewType.image,
     hotspots: [
       {
-        id: 'continue',
+        id: 'continueTour',
         label: 'Continue Tour',
         pos: {
           left: 827,
@@ -88,7 +88,7 @@ const views: View[] = [
         playTime: 8.1,
         isLabelOnLeft: false,
         type: HotspotType.video,
-        img: './../assets/group.svg'
+        img: './../assets/play.svg'
       },
       {
         id: 'vav',

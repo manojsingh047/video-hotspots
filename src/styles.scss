@@ -94,3 +94,16 @@ html, body {
 	display: flex;
     justify-content: center;
 }
+.bg-black{
+	background: #000;
+}
+.bg-white{
+	background: #fff;
+}
+.color-white{
+	color: #fff;
+}
+.hover-orange:hover{
+	color: #E24301;
+    transition-duration: 0.5s;
+}

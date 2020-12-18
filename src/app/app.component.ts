@@ -123,6 +123,7 @@ const views: View[] = [
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('imageDiv') imageDiv: ElementRef
+  @ViewChild('coloredImageEle') coloredImageEle: ElementRef
 
   videoPlayer: HTMLVideoElement;
 
@@ -214,7 +215,24 @@ export class AppComponent implements AfterViewInit {
     this.hideCardView();
     setTimeout(() => {
       this.viewToggle.showTransitionedImage = true;
+      this.coloredImageEle.nativeElement.classList.add('show'); //for smooth coloring on back
     }, 1200)
+  }
+  deRenderTransitionedImage() {
+    this.showHotspotView();
+    this.showCardView();
+    this.coloredImageEle.nativeElement.classList.remove('show'); //for smooth coloring on back
+  }
+  playHotspotVideo(hotspot: Hotspot) {
+    console.log('playing...');
+    this.hideHotspotView();
+    this.hideImageView();
+    this.hideCardView()
+    this.videoPlayer.currentTime = hotspot.playTime;
+    this.videoPlayer.play();
+  }
+  renderHotspots(hotspots: Hotspot[]) {
+    this.hotspotInView = [...hotspots];
   }
   showCardView() {
     this.viewToggle.showCard = true;
@@ -234,17 +252,5 @@ export class AppComponent implements AfterViewInit {
   showImageView() {
     this.viewToggle.showImageDiv = true;
   }
-  playHotspotVideo(hotspot: Hotspot) {
-    console.log('playing...');
-    this.hideHotspotView();
-    this.hideImageView();
-    this.hideCardView()
-    this.videoPlayer.currentTime = hotspot.playTime;
-    this.videoPlayer.play();
-  }
-  renderHotspots(hotspots: Hotspot[]) {
-    this.hotspotInView = [...hotspots];
-  }
-
 
 }

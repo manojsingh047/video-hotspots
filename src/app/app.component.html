@@ -15,19 +15,20 @@
           <div class="zt-item" data-id="zt-item-1">
             <img class="zt-current" src="./../assets/lg-build.png" />
             <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
-              data-speed="900" data-delay="0" style="top: 787px;left: 916px;"></div>
+              data-speed="800" data-delay="20" style="top: 787px;left: 916px;"></div>
           </div>
           <div class="zt-item" data-id="zt-item-2">
+            <!-- <img class="zt-current" src="./../assets/faded.png" /> -->
             <img class="zt-current" src="./../assets/faded-solid.png" />
-            <img [class.show]="viewToggle.showTransitionedImage" class="step pos-abs h-w-100" src="./../assets/color.png" />
-            <div (click)="showHotspotView()" class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5"
+            <img class="step pos-abs h-w-100" src="./../assets/color.png" #coloredImageEle />
+            <div (click)="deRenderTransitionedImage()" class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5"
               data-speed="500" data-delay="0">
               <span>back</span>
             </div>
           </div>
         </div>
       </div>
-      <div [class.show]="viewToggle.showCard" class="step">
+      <div [class.show]="viewToggle.showCard" class="step-fast">
         <div #cardEle class="pos-abs d-f-a-c t-0 r-0 h-full">
           <div class="card-container">
             <div class="title-box">

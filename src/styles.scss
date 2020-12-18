@@ -66,15 +66,19 @@ html, body {
 }
 .step{
 	opacity: 0;
-	transition: 0.9s ease-in all;
+	transition: 0.8s ease-in all;
 }
-.scale-0{
-	transform: scale(0);
+.step-fast{
+	opacity: 0;
+	transition: 0.2s ease-in all;
 }
-.scale-1{
-	transition: 0.9s ease-in all;
-	transform: scale(1);
-}
+// .scale-0{
+// 	transform: scale(0);
+// }
+// .scale-1{
+// 	transition: 0.9s ease-in all;
+// 	transform: scale(1);
+// }
 .h-w-100{
     width: 100%;
     height: 100%;

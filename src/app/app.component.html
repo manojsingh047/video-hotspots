@@ -30,7 +30,7 @@
       </div>
       <div>
         <div [class.reach-right]="viewToggle.showCard" #cardEle class="pos-abs d-f-a-c t-0 h-full animate-right">
-
+        <!-- <div #cardEle class="pos-abs d-f-a-c r-0 t-0 h-full "> -->
           <div class="card-container">
             <div class="title-box">
               <div class="title">
@@ -46,7 +46,25 @@
                 water plants, air handlers, and a VAV system. Depending on climate zone, it may use electric or
                 water-based reheat.</span>
             </div>
-            <div class="tab-container"></div>
+            <div class="tab-container">
+              <div class="tabs d-f">
+                <div class=" tab">
+                  <div (click)="onTabClick('tab1')" [class.tab-active]="tabs.tab1.shouldShow"
+                    class="cur-point tab-title text-upper font-bold">
+                    equipments
+                  </div>
+                </div>
+                <div class=" tab">
+                  <div (click)="onTabClick('tab2')" [class.tab-active]="tabs.tab2.shouldShow"
+                    class="cur-point tab-title text-upper font-bold">
+                    paired devices
+                  </div>
+                </div>
+              </div>
+              <div class="tab-content mt-24">
+                <p class="font-16 font-bold text-upper mb-14" *ngFor="let tabItem of activeTabList">{{tabItem}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

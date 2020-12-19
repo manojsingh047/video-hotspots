@@ -141,6 +141,29 @@ export class AppComponent implements AfterViewInit {
     showImageDiv: false,
     showTransitionedImage: false,
   }
+
+  tabs = {
+    tab1: {
+      shouldShow: true,
+      list: [
+        "VAV REHEAT BOX",
+        "4 PIPE FCU",
+        "CHILLER PLANT",
+        "DOAS",
+      ]
+    },
+    tab2: {
+      shouldShow: false,
+      list: [
+        "dcwb",
+        "dab fully modulating ahu",
+        "vav heat series fan",
+        "terminal profile",
+      ]
+    }
+  }
+
+  activeTabList = this.tabs.tab1.list;
   constructor(private renderer: Renderer2) {
 
   }
@@ -234,8 +257,22 @@ export class AppComponent implements AfterViewInit {
   renderHotspots(hotspots: Hotspot[]) {
     this.hotspotInView = [...hotspots];
   }
+
+  onTabClick(id: string) {
+    if (id === 'tab1') {
+      this.tabs.tab1.shouldShow = true;
+      this.tabs.tab2.shouldShow = false;
+      this.activeTabList = this.tabs.tab1.list;
+    } else {
+      this.tabs.tab2.shouldShow = true;
+      this.tabs.tab1.shouldShow = false;
+      this.activeTabList = this.tabs.tab2.list;
+    }
+  }
   showCardView() {
-    this.viewToggle.showCard = true;
+    setTimeout(() => {
+      this.viewToggle.showCard = true;
+    }, 800)
   }
   hideCardView() {
     this.viewToggle.showCard = false;

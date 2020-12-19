@@ -29,8 +29,8 @@ video{
 }
 .card-container{
     background: rgba(255, 255, 255, 0.8);
-    width: 435px;
-    height: 555px;
+    width: 375px;
+    height: 465px;
     padding: 20px;
     color: #000;
     box-shadow: 0px 3px 6px #0000003C;
@@ -51,5 +51,20 @@ video{
         width: 40px;
         height: 7px;
         margin-top: 8px;
+    }
+}
+.tab-container{
+    margin-top: 36px;
+    .tab{
+        width: 50%;
+        .tab-title{
+            text-align: center;
+            border-bottom: 2px solid #f1f1f1;
+            padding: 10px 0;
+        }
+        .tab-active{
+            border-color: #E24301 !important;
+            color: #E24301;
+        }
     }
 }

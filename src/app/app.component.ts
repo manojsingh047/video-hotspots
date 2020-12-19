@@ -3,7 +3,12 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } fr
 declare var $: any;
 
 interface View { id: string; timeStamp: number[]; hotspots: Hotspot[]; viewType: ViewType };
-export interface Hotspot { id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType, isNoOp?: boolean, img: string };
+export interface Hotspot {
+  id: string, label: string, pos: { top: number, left: number }, isLabelOnLeft: boolean, playTime?: number, type: HotspotType, isNoOp?: boolean, img: string, startPos?: {
+    left: number,
+    top: number
+  },
+};
 export enum HotspotType { video = "video", image = "image" };
 export enum ViewType { video = "video", image = "image" };
 //in seconds
@@ -97,6 +102,10 @@ const views: View[] = [
           left: 200,
           top: 253
         },
+        // startPos: {
+        //   left: 0,
+        //   top: 0
+        // },
         isLabelOnLeft: true,
         type: HotspotType.image,
         isNoOp: true,
@@ -106,8 +115,12 @@ const views: View[] = [
         id: 'chiller',
         label: 'chiller plant',
         pos: {
+          left: 1108,
+          top: 666
+        },
+        startPos: {
           left: 908,
-          top: 766
+          top: 799
         },
         isLabelOnLeft: false,
         type: HotspotType.image,
@@ -179,7 +192,7 @@ export class AppComponent implements AfterViewInit {
     });
   }
   onTimeupdate(event: any) {
-    console.log('current: ', this.videoPlayer.currentTime);
+    // console.log('current: ', this.videoPlayer.currentTime);
     const view = views.find(view => (
       parseFloat(this.videoPlayer.currentTime.toFixed(1)) >= view.timeStamp[0]
       &&
@@ -189,8 +202,7 @@ export class AppComponent implements AfterViewInit {
     if (!view) {
       return;
     }
-    console.log('view: ', view);
-
+    // console.log('view: ', view);
     this.videoPlayer.pause();
     this.showHotspotView();
 

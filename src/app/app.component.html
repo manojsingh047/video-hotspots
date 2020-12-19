@@ -1,6 +1,7 @@
 <div class="banner d-f-j-c">
   <img class="m-t-10" src="./assets/banner.png" alt="">
 </div>
+
 <div id="wrap_video" class="h-w-100">
   <div id="video_box" class="h-w-100">
     <!-- <div id="video_overlays" class="h-w-100" style="height: 91%;"> -->
@@ -8,14 +9,35 @@
       <div [class.show]="viewToggle.showHotspot" class="hotspot-container step">
         <ng-container *ngFor="let hotspot of hotspotInView">
           <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
+          <div *ngIf="hotspot.hasOwnProperty('startPos')" class="pos-abs"
+            [style]="{
+                                                                                                                                                                                                                                                                                                                                            top: hotspot.startPos.top + 'px',
+                                                                                                                                                                                                                                                                                                                                            left: hotspot.startPos.left + 'px'
+                                                                                                                                                                                                                                                                                                                                        }">
+            <div class="svg-box">
+              <svg viewbox="0 0 100 100" class="svg-ele">
+                <path fill="none" stroke-width="5px" stroke="rgba(200,10,10,0.5)" d="M97 5, 222 5" pathLength="50"
+                  class="svg-upper"></path>
+                <path fill="none" stroke-width="5px" stroke="rgba(200,10,10,0.5)" d="M4 98, 98 5" pathLength="50"
+                  class="svg-lower"></path>
+                <circle r="5" cy="98" cx="4" fill="#000"></circle>
+                <!-- <circle r="4" cy="5" cx="100" fill="#f33">
+                                                                            </circle> -->
+              </svg>
+            </div>
+            <!-- <div class="hotspot-black"></div> -->
+          
+          </div>
         </ng-container>
       </div>
       <div [class.show]="viewToggle.showImageDiv" class="step h-w-100">
         <div id="zt-container" class="zt-container">
           <div class="zt-item" data-id="zt-item-1">
             <img class="zt-current" src="./../assets/lg-build.png" />
+            <!-- <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
+                                                                                                                                                                                                                                                                                                                                                                                      data-speed="800" data-delay="0" style="top: 787px;left: 900px;"></div> -->
             <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
-              data-speed="800" data-delay="20" style="top: 787px;left: 916px;"></div>
+              data-speed="800" data-delay="0" style="top: 587px;left: 900px;"></div>
           </div>
           <div class="zt-item" data-id="zt-item-2">
             <!-- <img class="zt-current" src="./../assets/faded.png" /> -->
@@ -28,51 +50,53 @@
           </div>
         </div>
       </div>
-      <div>
-        <div [class.reach-right]="viewToggle.showCard" #cardEle class="pos-abs d-f-a-c t-0 h-full animate-right">
+      <div [class.reach-right]="viewToggle.showCard" #cardEle class="pos-abs d-f-a-c t-0 h-full animate-right">
         <!-- <div #cardEle class="pos-abs d-f-a-c r-0 t-0 h-full "> -->
-          <div class="card-container">
-            <div class="title-box">
-              <div class="title">
-                LARGE BUILDING
-              </div>
-              <div class="dash-orange"></div>
+        <div class="card-container">
+          <div class="title-box">
+            <div class="title">
+              LARGE BUILDING
             </div>
-            <br />
-            <br />
-            <div class="body">
-              <span>While most buildings in the U.S. are small, large commercial buildings tend to account for
-                the most total floorspace. With upwards of 500,000 square feet, these structures utilize central air and
-                water plants, air handlers, and a VAV system. Depending on climate zone, it may use electric or
-                water-based reheat.</span>
-            </div>
-            <div class="tab-container">
-              <div class="tabs d-f">
-                <div class=" tab">
-                  <div (click)="onTabClick('tab1')" [class.tab-active]="tabs.tab1.shouldShow"
-                    class="cur-point tab-title text-upper font-bold">
-                    equipments
-                  </div>
-                </div>
-                <div class=" tab">
-                  <div (click)="onTabClick('tab2')" [class.tab-active]="tabs.tab2.shouldShow"
-                    class="cur-point tab-title text-upper font-bold">
-                    paired devices
-                  </div>
+            <div class="dash-orange"></div>
+          </div>
+          <br />
+          <br />
+          <div class="body">
+            <span>While most buildings in the U.S. are small, large commercial buildings tend to account for
+              the most total floorspace. With upwards of 500,000 square feet, these structures utilize central air and
+              water plants, air handlers, and a VAV system. Depending on climate zone, it may use electric or
+              water-based reheat.</span>
+          </div>
+          <div class="tab-container">
+            <div class="tabs d-f">
+              <div class=" tab">
+                <div (click)="onTabClick('tab1')" [class.tab-active]="tabs.tab1.shouldShow"
+                  class="cur-point tab-title text-upper font-bold">
+                  equipments
                 </div>
               </div>
-              <div class="tab-content mt-24">
-                <p class="font-16 font-bold text-upper mb-14" *ngFor="let tabItem of activeTabList">{{tabItem}}</p>
+              <div class=" tab">
+                <div (click)="onTabClick('tab2')" [class.tab-active]="tabs.tab2.shouldShow"
+                  class="cur-point tab-title text-upper font-bold">
+                  paired devices
+                </div>
               </div>
+            </div>
+            <div class="tab-content mt-24">
+              <p class="font-16 font-bold text-upper mb-14" *ngFor="let tabItem of activeTabList">{{tabItem}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="h-w-100">
-      <video src="./../assets/video/video.mp4" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
-        #videoPlayer>
-        Sorry, your browser doesn't support embedded videos.
+      <!-- <video src="./../assets/video/video.mp4" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
+                                                                                                                                                                                      #videoPlayer>
+                                                                                                                                                                                      Sorry, your browser doesn't support embedded videos.
+                                                                                                                                                                                    </video> -->
+      <video src="./../assets/video/video.mp4#t=5.6" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
+                                #videoPlayer>
+                                Sorry, your browser doesn't support embedded videos.
       </video>
     </div>
   </div>
@@ -97,29 +121,3 @@
         </div>
       </div>
       </div> -->
-<!-- <svg class="test" viewbox="0 0 400 200">
-        <path class="key-anim1"
-              fill="none"
-              stroke-width="5px"
-              stroke="rgba(200,10,10,0.5)"
-              d="M50 50, 100 100"
-              />
-        <path class="key-anim2"
-              fill="none"
-              stroke-width="5px"
-              stroke="rgba(200,10,10,0.5)"
-              d="M100 100, 150 100"/>
-        <path class="key-anim3"
-              fill="none"
-              stroke-width="5px"
-              stroke="rgba(200,10,10,0.5)"
-              d="M150 100, 150 150"/>
-        <circle r="10" cy="50" cx="50"
-                fill="#f33"/>
-        <circle r="10" cy="100" cx="100"
-                fill="#f33"/>
-        <circle r="10" cy="100" cx="150"
-                fill="#f33"/>
-        <circle r="10" cy="150" cx="150"
-                fill="#f33"/>
-      </svg> -->

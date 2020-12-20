@@ -8,6 +8,8 @@ export interface Hotspot {
     left: number,
     top: number
   },
+  imgGray?: string,
+  imgColor?: string,
 };
 export enum HotspotType { video = "video", image = "image", equipment = "equip" };
 export enum ViewType { video = "video", image = "image" };
@@ -35,8 +37,10 @@ const views: View[] = [
         playTime: 4.0,
         type: HotspotType.video,
         isNoOp: false,
-        img: './../assets/build-lg.svg'
 
+        img: './../assets/lg-build-gray.svg',
+        imgGray: './../assets/lg-build-gray.svg',
+        imgColor: './../assets/build-lg.svg',
       },
       {
         id: 'build-md',
@@ -49,7 +53,9 @@ const views: View[] = [
         playTime: 4.0,
         type: HotspotType.video,
         isNoOp: true,
-        img: './../assets/build-md.svg'
+        img: './../assets/build-md-gray.svg',
+        imgGray: './../assets/build-md-gray.svg',
+        imgColor: './../assets/build-md.svg',
       },
       {
         id: 'rest',
@@ -62,7 +68,9 @@ const views: View[] = [
         playTime: -1,
         type: HotspotType.video,
         isNoOp: true,
-        img: './../assets/rest.svg'
+        img: './../assets/rest-gray.svg',
+        imgGray: './../assets/rest-gray.svg',
+        imgColor: './../assets/rest.svg',
       },
       {
         id: 'hotel',
@@ -75,7 +83,9 @@ const views: View[] = [
         playTime: -1,
         type: HotspotType.video,
         isNoOp: true,
-        img: './../assets/hotel.svg'
+        img: './../assets/hotel-gray.svg',
+        imgGray: './../assets/hotel-gray.svg',
+        imgColor: './../assets/hotel.svg',
       }
     ]
   },
@@ -106,7 +116,9 @@ const views: View[] = [
         isLabelOnLeft: true,
         type: HotspotType.image,
         isNoOp: true,
-        img: './../assets/group.svg'
+        img: './../assets/group-gray.svg',
+        imgGray: './../assets/group-gray.svg',
+        imgColor: './../assets/group.svg',
       },
       {
         id: 'chiller',
@@ -117,7 +129,9 @@ const views: View[] = [
         },
         isLabelOnLeft: false,
         type: HotspotType.image,
-        img: './../assets/group.svg'
+        img: './../assets/group-gray.svg',
+        imgGray: './../assets/group-gray.svg',
+        imgColor: './../assets/group.svg',
       }
     ]
   },
@@ -149,6 +163,7 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('imageDiv') imageDiv: ElementRef
   @ViewChild('coloredImageEle') coloredImageEle: ElementRef
   @ViewChild('ztTag') ztTag: ElementRef<HTMLElement>;
+  @ViewChild('banner') banner: ElementRef<HTMLElement>;
 
   videoPlayer: HTMLVideoElement;
 
@@ -165,6 +180,7 @@ export class AppComponent implements AfterViewInit {
     showCard: false,
     showImageDiv: false,
     showTransitionedImage: false,
+    showImageBack: false //for faded build-lg
   }
 
   tabs = {
@@ -185,7 +201,18 @@ export class AppComponent implements AfterViewInit {
         "vav heat series fan",
         "terminal profile",
       ]
+    },
+    tab3: {
+      shouldShow: false,
+      list: [
+        "HYPERSTAT",
+        "Smart Stat",
+        "CCU",
+        "Smart Node",
+        "RTH Sensor"
+      ]
     }
+
   }
 
   activeTabList = this.tabs.tab1.list;
@@ -236,7 +263,8 @@ export class AppComponent implements AfterViewInit {
     if (hotspot.isNoOp) {
       return;
     }
-
+    // this.banner.nativeElement.style.display = "none";
+    this.banner.nativeElement.classList.remove('show'); //for smooth 
     if (hotspot.id === 'chiller') {
       this.ztTag.nativeElement.click();
       this.renderTransitionedImage();
@@ -260,6 +288,7 @@ export class AppComponent implements AfterViewInit {
   renderImage(hotspots: Hotspot[]) {
     console.log('imageDiv', this.imageDiv);
     this.showImageView();
+    // this.showImageBack();
     setTimeout(() => {
       this.renderHotspots(hotspots);
     }, 100)
@@ -293,11 +322,18 @@ export class AppComponent implements AfterViewInit {
     if (id === 'tab1') {
       this.tabs.tab1.shouldShow = true;
       this.tabs.tab2.shouldShow = false;
+      this.tabs.tab3.shouldShow = false;
       this.activeTabList = this.tabs.tab1.list;
-    } else {
+    } else if ((id === 'tab2')) {
       this.tabs.tab2.shouldShow = true;
       this.tabs.tab1.shouldShow = false;
+      this.tabs.tab3.shouldShow = false;
       this.activeTabList = this.tabs.tab2.list;
+    } else {
+      this.tabs.tab2.shouldShow = false;
+      this.tabs.tab1.shouldShow = false;
+      this.tabs.tab3.shouldShow = true;
+      this.activeTabList = this.tabs.tab3.list;
     }
   }
   showCardView() {
@@ -320,5 +356,10 @@ export class AppComponent implements AfterViewInit {
   showImageView() {
     this.viewToggle.showImageDiv = true;
   }
-
+  showImageBack() {
+    this.viewToggle.showImageBack = true;
+  }
+  hideImageBack() {
+    this.viewToggle.showImageBack = false;
+  }
 }

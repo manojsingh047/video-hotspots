@@ -1,4 +1,4 @@
-<div class="banner d-f-j-c">
+<div class="banner d-f-j-c step show" #banner>
   <img class="m-t-10" src="./assets/banner.png" alt="">
 </div>
 
@@ -12,27 +12,30 @@
           <div *ngIf="hotspot.id === 'chiller'">
             <div class="svg-box">
               <svg viewbox="0 0 100 100" class="svg-ele-chiller">
-                <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M99 5, 221 6" pathLength="50" class="svg-upper">
+                <path fill="none" stroke-width="0.5px" stroke="rgba(0,0,0,1)" d="M50 5, 221 6" pathLength="50" class="svg-upper">
                 </path>
-                <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M8 98, 100 5" pathLength="50" class="svg-lower">
+                <path fill="none" stroke-width="0.5px" stroke="rgba(0,0,0,1)" d="M8 98, 50 5" pathLength="50" class="svg-lower">
                 </path>
-                <circle r="5" cy="98" cx="8" fill="#000"></circle>
+                <circle r="3" cy="98" cx="8" fill="#000"></circle>
               </svg>
             </div>
           </div>
           <div *ngIf="hotspot.id === 'vav'">
             <div class="svg-box">
               <svg viewbox="0 0 100 100" class="svg-ele-vav">
-                <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M220 6, 9 5" pathLength="50"
+                <path fill="none" stroke-width="0.5px" stroke="rgba(0,0,0,1)" d="M290 6, 9 5" pathLength="50"
                   class="svg-vav-upper"></path>
-                <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M340 100, 220 6" pathLength="50" class="svg-vav-lower">
+                <path fill="none" stroke-width="0.5px" stroke="rgba(0,0,0,1)" d="M340 100, 290 6" pathLength="50" class="svg-vav-lower">
                 </path>
-                <circle r="5" cy="100" cx="340" fill="#000"></circle>
+                <circle r="3" cy="100" cx="340" fill="#000"></circle>
               </svg>
             </div>
           </div>
         </ng-container>
       </div>
+<!-- <div [class.show]="viewToggle.showImageDiv" class="step pos-abs h-w-100">
+  <img class="pos-abs h-w-100" src="./../assets/lg-build-faded.png" />
+</div> -->
       <div [class.show]="viewToggle.showImageDiv" class="step h-w-100">
         <div id="zt-container" class="zt-container">
           <div class="zt-item" data-id="zt-item-1">
@@ -85,6 +88,12 @@
                 <div (click)="onTabClick('tab2')" [class.tab-active]="tabs.tab2.shouldShow"
                   class="cur-point tab-title text-upper font-bold">
                   paired devices
+                </div>
+              </div>
+              <div class=" tab">
+                <div (click)="onTabClick('tab3')" [class.tab-active]="tabs.tab3.shouldShow"
+                  class="cur-point tab-title text-upper font-bold">
+                  applications
                 </div>
               </div>
             </div>

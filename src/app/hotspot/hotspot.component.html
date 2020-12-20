@@ -22,7 +22,7 @@
             </div>
         </div>
     </ng-container>
-    
+
     <ng-template #nonEquip>
         <ng-container *ngIf="hotspot.id==='continueTour'; else lineSpots">
             <div class="hotspot">
@@ -37,20 +37,20 @@
         <ng-template #lineSpots>
             <div class="hotspot hover-orange">
                 <ng-container *ngIf="hotspot.isLabelOnLeft; else labelOnRight">
-                    <div class="hotspot-box bg-white mr-16">
-                        <img [src]="hotspot.img" alt="" class="m-r-11">
+                    <div class="hotspot-box bg-white mr-16" (mouseenter)="onHotMouseOver()" (mouseleave)="onHotMouseOut()">
+                        <img [src]="curHotspot.img" alt="" class="m-r-11">
                         {{hotspot.label}}
-                        <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
+                        <img [src]="curHotspot.arrow" class="m-l-16 w-8" alt="">
                     </div>
                     <div class="hotspot-blink"></div>
                 </ng-container>
 
                 <ng-template #labelOnRight>
                     <div class="hotspot-blink"></div>
-                    <div class="hotspot-box bg-white ml-16">
-                        <img [src]="hotspot.img" alt="" class="m-r-11">
+                    <div class="hotspot-box bg-white ml-16" (mouseenter)="onHotMouseOver()" (mouseleave)="onHotMouseOut()">
+                        <img [src]="curHotspot.img" alt="" class="m-r-11">
                         {{hotspot.label}}
-                        <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
+                        <img [src]="curHotspot.arrow" class="m-l-16 w-8" alt="">
                     </div>
                 </ng-template>
             </div>

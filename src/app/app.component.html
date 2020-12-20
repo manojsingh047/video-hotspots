@@ -9,25 +9,25 @@
       <div [class.show]="viewToggle.showHotspot" class="hotspot-container step">
         <ng-container *ngFor="let hotspot of hotspotInView">
           <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
-          <div *ngIf="hotspot.id === 'chiller'" class="pos-abs">
+          <div *ngIf="hotspot.id === 'chiller'">
             <div class="svg-box">
               <svg viewbox="0 0 100 100" class="svg-ele-chiller">
-                <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M99 5, 220 6" pathLength="50" class="svg-upper">
+                <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M99 5, 221 6" pathLength="50" class="svg-upper">
                 </path>
                 <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M8 98, 100 5" pathLength="50" class="svg-lower">
                 </path>
                 <circle r="5" cy="98" cx="8" fill="#000"></circle>
               </svg>
-              </div>
-              </div>
-              <div *ngIf="hotspot.id === 'vav'" class="pos-abs">
-                <div class="svg-box">
-                  <svg viewbox="0 0 100 100" class="svg-ele-vav">
-                    <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M99 5, 220 6" pathLength="50"
-                      class="svg-vav-upper"></path>
-                    <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M8 98, 100 5" pathLength="50"
-                      class="svg-vav-upper"></path>
-                    <circle r="5" cy="600" cx="200" fill="#000"></circle>
+            </div>
+          </div>
+          <div *ngIf="hotspot.id === 'vav'">
+            <div class="svg-box">
+              <svg viewbox="0 0 100 100" class="svg-ele-vav">
+                <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M220 6, 9 5" pathLength="50"
+                  class="svg-vav-upper"></path>
+                <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M340 100, 220 6" pathLength="50" class="svg-vav-lower">
+                </path>
+                <circle r="5" cy="100" cx="340" fill="#000"></circle>
               </svg>
             </div>
           </div>

@@ -9,12 +9,13 @@ export interface Hotspot {
     top: number
   },
 };
-export enum HotspotType { video = "video", image = "image" };
+export enum HotspotType { video = "video", image = "image", equipment = "equip" };
 export enum ViewType { video = "video", image = "image" };
 //in seconds
 const timeStamps = {
   allHotspots: [2.2, 2.5],
   lgBuild: [5.8, 6.1],
+  recep: [13.5, 13.7],
 };
 
 const views: View[] = [
@@ -99,8 +100,8 @@ const views: View[] = [
         id: 'vav',
         label: 'vav reheat',
         pos: {
-          left: 200,
-          top: 253
+          left: 64,
+          top: 752
         },
         isLabelOnLeft: true,
         type: HotspotType.image,
@@ -112,11 +113,29 @@ const views: View[] = [
         label: 'chiller plant',
         pos: {
           left: 1108,
-          top: 666
+          top: 667
         },
         isLabelOnLeft: false,
         type: HotspotType.image,
         img: './../assets/group.svg'
+      }
+    ]
+  },
+  {
+    id: 'recep',
+    timeStamp: timeStamps.recep,
+    viewType: ViewType.video,
+    hotspots: [
+      {
+        id: 'someEquip',
+        label: 'some equipment',
+        pos: {
+          left: 1108,
+          top: 667
+        },
+        isLabelOnLeft: false,
+        type: HotspotType.video,
+        img: ''
       }
     ]
   }
@@ -185,7 +204,7 @@ export class AppComponent implements AfterViewInit {
     });
   }
   onTimeupdate(event: any) {
-    // console.log('current: ', this.videoPlayer.currentTime);
+    console.log('current: ', this.videoPlayer.currentTime);
     const view = views.find(view => (
       parseFloat(this.videoPlayer.currentTime.toFixed(1)) >= view.timeStamp[0]
       &&

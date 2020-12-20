@@ -18,9 +18,9 @@ img.zt-temp{
 .zt-tag{
 	position:absolute;
 	z-index:10;
-	border:2px solid hotpink;
-    width: 264px;
-	height: 39px;
+	/* border:2px solid hotpink; */
+    width: 11px;
+    height: 11px;
 	cursor:pointer;
 }
 .zt-tag-back{

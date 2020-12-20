@@ -9,24 +9,27 @@
       <div [class.show]="viewToggle.showHotspot" class="hotspot-container step">
         <ng-container *ngFor="let hotspot of hotspotInView">
           <hotspot [hotspot]="hotspot" (onHotspotClick)="onHotspotClick($event)"></hotspot>
-          <div *ngIf="hotspot.hasOwnProperty('startPos')" class="pos-abs"
-            [style]="{
-                                                                                                                                                                                                                                                                                                                                            top: hotspot.startPos.top + 'px',
-                                                                                                                                                                                                                                                                                                                                            left: hotspot.startPos.left + 'px'
-                                                                                                                                                                                                                                                                                                                                        }">
+          <div *ngIf="hotspot.id === 'chiller'" class="pos-abs">
             <div class="svg-box">
-              <svg viewbox="0 0 100 100" class="svg-ele">
-                <path fill="none" stroke-width="5px" stroke="rgba(200,10,10,0.5)" d="M97 6, 222 6" pathLength="50"
-                  class="svg-upper"></path>
-                <path fill="none" stroke-width="5px" stroke="rgba(200,10,10,0.5)" d="M4 98, 98 5" pathLength="50"
-                  class="svg-lower"></path>
-                <circle r="5" cy="98" cx="4" fill="#000"></circle>
-                <!-- <circle r="4" cy="5" cx="100" fill="#f33">
-                                                                            </circle> -->
+              <svg viewbox="0 0 100 100" class="svg-ele-chiller">
+                <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M99 5, 220 6" pathLength="50" class="svg-upper">
+                </path>
+                <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M8 98, 100 5" pathLength="50" class="svg-lower">
+                </path>
+                <circle r="5" cy="98" cx="8" fill="#000"></circle>
+              </svg>
+              </div>
+              </div>
+              <div *ngIf="hotspot.id === 'vav'" class="pos-abs">
+                <div class="svg-box">
+                  <svg viewbox="0 0 100 100" class="svg-ele-vav">
+                    <path fill="none" stroke-width="1px" stroke="rgba(0,0,0,1)" d="M99 5, 220 6" pathLength="50"
+                      class="svg-vav-upper"></path>
+                    <path fill="none" stroke-width="1.5px" stroke="rgba(0,0,0,1)" d="M8 98, 100 5" pathLength="50"
+                      class="svg-vav-upper"></path>
+                    <circle r="5" cy="600" cx="200" fill="#000"></circle>
               </svg>
             </div>
-            <!-- <div class="hotspot-black"></div> -->
-          
           </div>
         </ng-container>
       </div>
@@ -37,7 +40,10 @@
             <!-- <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
                                                                                                                                                                                                                                                                                                                                                                                       data-speed="800" data-delay="0" style="top: 787px;left: 900px;"></div> -->
             <div (click)="renderTransitionedImage()" class="zt-tag" data-dir="1" data-link="zt-item-2" data-zoom="5"
-              data-speed="800" data-delay="0" style="top: 587px;left: 900px;"></div>
+              data-speed="800" data-delay="0" style="
+              top: 793px;
+              left: 908px;
+          " #ztTag></div>
           </div>
           <div class="zt-item" data-id="zt-item-2">
             <!-- <img class="zt-current" src="./../assets/faded.png" /> -->
@@ -94,9 +100,9 @@
                                                                                                                                                                                       #videoPlayer>
                                                                                                                                                                                       Sorry, your browser doesn't support embedded videos.
                                                                                                                                                                                     </video> -->
-                                                                                                                                                                                    <video src="./../assets/video/video.mp4#t=5.6" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
-                                #videoPlayer>
-                                Sorry, your browser doesn't support embedded videos.
+      <video src="./../assets/video/video.mp4#t=5.6" (timeupdate)="onTimeupdate($event)" [autoplay]="true" [muted]="true"
+        #videoPlayer>
+        Sorry, your browser doesn't support embedded videos.
       </video>
     </div>
   </div>

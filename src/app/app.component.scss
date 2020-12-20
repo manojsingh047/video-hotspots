@@ -81,12 +81,13 @@ video{
     // margin-left: -7px;
     // margin-top: -10px;
 
-    .svg-ele{
+    .svg-ele-chiller{
         position: absolute;
         width: 236px;
         height: 107px;
-        // border: 1px solid;
-        top: -96px;
+        border: 1px solid;
+        top: 704px;
+        left: 907px;
     }
     .svg-upper {
         animation: Drawpath 1s linear 0.5s forwards;
@@ -94,6 +95,22 @@ video{
       }
       .svg-lower {
         animation: Drawpath 1s linear forwards;
+        stroke-dasharray: 100,200;
+      }
+      .svg-ele-vav{
+        position: absolute;
+        width: 246px;
+        height: 617px;
+        border: 1px solid;
+        top: 290px;
+        left: 428px;
+    }
+      .svg-vav-upper {
+        animation: Drawpath 1s linear 0.5s forwards;
+        stroke-dasharray: 0,100;
+      }
+      .svg-vav-lower {
+        animation: Drawpath 1s linear;
         stroke-dasharray: 100,200;
       }
       @keyframes Drawpath {
@@ -104,5 +121,6 @@ video{
           stroke-dasharray: 100,200;
         }
       }
+
 }
 

@@ -102,10 +102,6 @@ const views: View[] = [
           left: 200,
           top: 253
         },
-        // startPos: {
-        //   left: 0,
-        //   top: 0
-        // },
         isLabelOnLeft: true,
         type: HotspotType.image,
         isNoOp: true,
@@ -117,10 +113,6 @@ const views: View[] = [
         pos: {
           left: 1108,
           top: 666
-        },
-        startPos: {
-          left: 908,
-          top: 799
         },
         isLabelOnLeft: false,
         type: HotspotType.image,
@@ -137,6 +129,7 @@ const views: View[] = [
 export class AppComponent implements AfterViewInit {
   @ViewChild('imageDiv') imageDiv: ElementRef
   @ViewChild('coloredImageEle') coloredImageEle: ElementRef
+  @ViewChild('ztTag') ztTag: ElementRef<HTMLElement>;
 
   videoPlayer: HTMLVideoElement;
 
@@ -224,6 +217,13 @@ export class AppComponent implements AfterViewInit {
     if (hotspot.isNoOp) {
       return;
     }
+
+    if (hotspot.id === 'chiller') {
+      this.ztTag.nativeElement.click();
+      this.renderTransitionedImage();
+      return;
+    }
+
     this.hideHotspotView();
     setTimeout(() => {
       this.hotspotInView.length = 0;

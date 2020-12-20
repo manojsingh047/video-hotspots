@@ -2,36 +2,59 @@
         top: hotspot.pos.top + 'px',
         left: hotspot.pos.left + 'px'
     }" (click)="onHotspotClick.emit(hotspot)">
-    <ng-container *ngIf="hotspot.id==='continueTour'; else lineSpots">
-        <div class="hotspot">
-            <div class="hotspot-blink"></div>
-            <div class="hotspot-box bg-black color-white ml-16">
-                <img [src]="hotspot.img" alt="" class="m-r-11">
-                {{hotspot.label}}
+    <ng-container *ngIf="hotspot.type==='equip'; else nonEquip">
+        <div class="">
+            <div class="hotspot-equip">
+                <div></div>
             </div>
+            <div class="svg-box">
+                <svg viewbox="0 0 100 100" class="svg-ele-equip">
+                    <path fill="none" stroke-width="2px" stroke="#E24302" d="M200 50, 9 50" pathLength="50"
+                        class="svg-equip-upper"></path>
+                    <path fill="none" stroke-width="2px" stroke="#E24302" d="M236 0, 200 50" pathLength="50"
+                        class="svg-equip-lower">
+                    </path>
+                    <circle r="5" cy="100" cx="340" fill="#000"></circle>
+                </svg>
             </div>
-            </ng-container>
-            
-            <ng-template #lineSpots>
-                <div class="hotspot hover-orange">
-            <ng-container *ngIf="hotspot.isLabelOnLeft; else labelOnRight">
-                <div class="hotspot-box bg-white mr-16">
-                    <img [src]="hotspot.img" alt="" class="m-r-11">
-                    {{hotspot.label}}
-                    <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
-                </div>
-                <div class="hotspot-blink"></div>
-            </ng-container>
-
-            <ng-template #labelOnRight>
-                <div class="hotspot-blink"></div>
-                <div class="hotspot-box bg-white ml-16">
-                    <img [src]="hotspot.img" alt="" class="m-r-11">
-                    {{hotspot.label}}
-                    <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
-                </div>
-            </ng-template>
+            <div [class.font-init]="!!equipLabel.length" class="font-animate equip-text pos-abs font-bold">
+                {{equipLabel}}
+            </div>
         </div>
+    </ng-container>
+    
+    <ng-template #nonEquip>
+        <ng-container *ngIf="hotspot.id==='continueTour'; else lineSpots">
+            <div class="hotspot">
+                <div class="hotspot-blink"></div>
+                <div class="hotspot-box bg-black color-white ml-16">
+                    <img [src]="hotspot.img" alt="" class="m-r-11">
+                    {{hotspot.label}}
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-template #lineSpots>
+            <div class="hotspot hover-orange">
+                <ng-container *ngIf="hotspot.isLabelOnLeft; else labelOnRight">
+                    <div class="hotspot-box bg-white mr-16">
+                        <img [src]="hotspot.img" alt="" class="m-r-11">
+                        {{hotspot.label}}
+                        <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
+                    </div>
+                    <div class="hotspot-blink"></div>
+                </ng-container>
+
+                <ng-template #labelOnRight>
+                    <div class="hotspot-blink"></div>
+                    <div class="hotspot-box bg-white ml-16">
+                        <img [src]="hotspot.img" alt="" class="m-r-11">
+                        {{hotspot.label}}
+                        <img [src]="'./assets/arrow.svg'" class="m-l-16 w-8" alt="">
+                    </div>
+                </ng-template>
+            </div>
+        </ng-template>
     </ng-template>
 
 </div>

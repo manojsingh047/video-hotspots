@@ -1,5 +1,6 @@
 .hotspot-container{
     display: inline-block;
+    text-transform: uppercase;
 }
 .hotspot{
     display: flex;
@@ -27,8 +28,52 @@
     letter-spacing: 0px;
     font-weight: 700;
 }
-
-
+.equip-text{
+    left: -222px;
+    top: 40px;
+}
+.hotspot-equip{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 2px solid #E24301;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div{
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        background: #E24301;
+        top: 334px;
+    }
+}
+.svg-box{
+    .svg-ele-equip{
+        position: absolute;
+        width: 236px;
+        height: 107px;
+        // border: 1px solid red;
+        top: 10px;
+        left: -232px;
+    }
+    .svg-equip-upper {
+        animation: Drawpath 1s linear 0.5s forwards;
+        stroke-dasharray: 0,100;
+    }
+    .svg-equip-lower {
+        animation: Drawpath 1s linear forwards;
+        stroke-dasharray: 100,200;
+    }
+    @keyframes Drawpath {
+    from {
+        stroke-dasharray: 0,100;
+    }
+    to {
+        stroke-dasharray: 100,200;
+    }
+  }
+}
 @keyframes wave{
     from{
         box-shadow: 0 0 0 0 #E24301;

@@ -79,6 +79,14 @@ html, body {
 	right: -484px;
 	transition: 0.6s ease all;
 }
+
+.font-init{
+	font-size: 16px !important;
+}
+.font-animate{
+	font-size: 0px;
+	transition: 0.6s ease all;
+}
 // .scale-0{
 // 	transform: scale(0);
 // }

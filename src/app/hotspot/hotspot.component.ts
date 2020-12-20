@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Hotspot } from '../app.component';
 
 @Component({
@@ -6,13 +6,18 @@ import { Hotspot } from '../app.component';
   templateUrl: './hotspot.component.html',
   styleUrls: ['./hotspot.component.scss']
 })
-export class HotspotComponent implements OnInit {
+export class HotspotComponent implements OnChanges {
   @Input() hotspot: Hotspot;
   @Output() onHotspotClick = new EventEmitter<Hotspot>();
 
+  private equipLabel: string = "";
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    setTimeout(() => {
+      this.equipLabel = this.hotspot.label;
+    }, 1200);
   }
+
 
 }

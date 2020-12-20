@@ -130,11 +130,11 @@ const views: View[] = [
         id: 'someEquip',
         label: 'some equipment',
         pos: {
-          left: 1108,
-          top: 667
+          left: 1342,
+          top: 334
         },
         isLabelOnLeft: false,
-        type: HotspotType.video,
+        type: HotspotType.equipment,
         img: ''
       }
     ]

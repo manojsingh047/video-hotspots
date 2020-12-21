@@ -179,8 +179,7 @@ export class AppComponent implements AfterViewInit {
     showHotspot: false,
     showCard: false,
     showImageDiv: false,
-    showTransitionedImage: false,
-    showImageBack: false //for faded build-lg
+    showTransitionedImage: false
   }
 
   tabs = {
@@ -243,7 +242,6 @@ export class AppComponent implements AfterViewInit {
     }
     // console.log('view: ', view);
     this.videoPlayer.pause();
-    this.showHotspotView();
 
     switch (view.viewType) {
       case ViewType.image:
@@ -251,12 +249,13 @@ export class AppComponent implements AfterViewInit {
         this.renderCard(view.hotspots);
         break;
       case ViewType.video:
+        this.showHotspotView();
         this.renderHotspots(view.hotspots);
         break;
     }
   }
   renderCard(hotspots: Hotspot[]) {
-    this.showCardView();
+    this.showCardView(2500);
   }
   onHotspotClick(hotspot: Hotspot) {
     console.log(hotspot);
@@ -287,11 +286,12 @@ export class AppComponent implements AfterViewInit {
   }
   renderImage(hotspots: Hotspot[]) {
     console.log('imageDiv', this.imageDiv);
+
     this.showImageView();
-    // this.showImageBack();
     setTimeout(() => {
+      this.showHotspotView();
       this.renderHotspots(hotspots);
-    }, 100)
+    }, 1500)
   }
   renderTransitionedImage() {
     this.hideHotspotView();
@@ -303,7 +303,7 @@ export class AppComponent implements AfterViewInit {
   }
   deRenderTransitionedImage() {
     this.showHotspotView();
-    this.showCardView();
+    this.showCardView(100);
     this.coloredImageEle.nativeElement.classList.remove('show'); //for smooth coloring on back
   }
   playHotspotVideo(hotspot: Hotspot) {
@@ -336,10 +336,10 @@ export class AppComponent implements AfterViewInit {
       this.activeTabList = this.tabs.tab3.list;
     }
   }
-  showCardView() {
+  showCardView(delay: number) {
     setTimeout(() => {
       this.viewToggle.showCard = true;
-    }, 800)
+    }, delay)
   }
   hideCardView() {
     this.viewToggle.showCard = false;
@@ -355,11 +355,5 @@ export class AppComponent implements AfterViewInit {
   }
   showImageView() {
     this.viewToggle.showImageDiv = true;
-  }
-  showImageBack() {
-    this.viewToggle.showImageBack = true;
-  }
-  hideImageBack() {
-    this.viewToggle.showImageBack = false;
   }
 }

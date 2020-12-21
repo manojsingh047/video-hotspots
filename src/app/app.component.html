@@ -50,7 +50,7 @@
             <img class="step pos-abs h-w-100" src="./../assets/color.png" #coloredImageEle />
             <div (click)="deRenderTransitionedImage()" class="zt-tag zt-tag-back" data-dir="-1" data-link="zt-item-1" data-zoom="5"
               data-speed="500" data-delay="0">
-              <span>back</span>
+              <span>BACK</span>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
           <br />
           <br />
           <div class="body">
-            <span>While most buildings in the U.S. are small, large commercial buildings tend to account for
+            <span class="font-sans">While most buildings in the U.S. are small, large commercial buildings tend to account for
               the most total floorspace. With upwards of 500,000 square feet, these structures utilize central air and
               water plants, air handlers, and a VAV system. Depending on climate zone, it may use electric or
               water-based reheat.</span>
@@ -76,25 +76,25 @@
             <div class="tabs d-f">
               <div class=" tab">
                 <div (click)="onTabClick('tab1')" [class.tab-active]="tabs.tab1.shouldShow"
-                  class="cur-point tab-title text-upper font-bold">
+                  class="cur-point tab-title text-upper font-15">
                   equipments
                 </div>
               </div>
               <div class=" tab">
                 <div (click)="onTabClick('tab2')" [class.tab-active]="tabs.tab2.shouldShow"
-                  class="cur-point tab-title text-upper font-bold">
+                  class="cur-point tab-title text-upper font-15">
                   paired devices
                 </div>
               </div>
               <div class=" tab">
                 <div (click)="onTabClick('tab3')" [class.tab-active]="tabs.tab3.shouldShow"
-                  class="cur-point tab-title text-upper font-bold">
+                  class="cur-point tab-title text-upper font-15">
                   applications
                 </div>
               </div>
             </div>
             <div class="tab-content mt-24">
-              <p class="font-16 font-bold text-upper mb-14" *ngFor="let tabItem of activeTabList">{{tabItem}}</p>
+              <p class="font-16 text-upper mb-14" *ngFor="let tabItem of activeTabList">{{tabItem}}</p>
             </div>
           </div>
         </div>

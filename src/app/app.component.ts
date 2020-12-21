@@ -190,6 +190,7 @@ export class AppComponent implements AfterViewInit {
         "4 PIPE FCU",
         "CHILLER PLANT",
         "DOAS",
+        "ahu",
       ]
     },
     tab2: {

@@ -1,7 +1,5 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald:wght@400;500&display=swap');
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -49,9 +47,14 @@ table {
 html, body {
     height: 100%;
 	overflow: hidden;
-	font-family: system-ui;
+	font-family: 'Oswald', sans-serif !important;
 }
-
+.font-os{
+	font-family: 'Oswald', sans-serif !important;
+}
+.font-sans{
+	font-family: 'Open Sans', sans-serif;
+}
 .mr-16{
     margin-right: 16px;
 }
@@ -76,7 +79,7 @@ html, body {
 	right: 0 !important;
 }
 .animate-right{
-	right: -484px;
+	right: -518px;
 	transition: 0.6s ease all;
 }
 
@@ -146,6 +149,9 @@ html, body {
 
 .font-16{
 	font-size: 16px;
+}
+.font-15{
+	font-size: 15px;
 }
 .font-bold{
 	font-weight: 700;

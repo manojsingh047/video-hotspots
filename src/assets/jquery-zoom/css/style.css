@@ -32,7 +32,6 @@ img.zt-temp{
 	box-shadow:none;
 }
 .zt-tag-back span{
-    font-weight: 700;
     text-decoration: dashed;
     color: #484848;
     font-size: 24px;
@@ -40,6 +39,7 @@ img.zt-temp{
     margin: 20px 20px;
 	border-bottom: 1px dashed gray;
 	z-index: 3;
+	padding-bottom: 6px;
 }
 .zt-loading{
 	position:absolute;

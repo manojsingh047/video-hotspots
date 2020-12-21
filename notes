@@ -2,7 +2,7 @@
 - to make video player better - video.js
 - three.js for product and main screen
 
--vide size - 1920 X 1080
+-video size - 1920 X 1080
 - 1627 X 917
 
 - webm
@@ -21,5 +21,6 @@
 -- 3 tabs for card
 -- fix line angle
 -- hide header banner when video begins
-
 -- build image
+
+-- font

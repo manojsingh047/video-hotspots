@@ -110,7 +110,7 @@ const views: View[] = [
         id: 'vav',
         label: 'vav reheat',
         pos: {
-          left: 64,
+          left: 87,
           top: 752
         },
         isLabelOnLeft: true,

@@ -217,7 +217,7 @@ export class AppComponent implements AfterViewInit {
 
   activeTabList = this.tabs.tab1.list;
   constructor(private renderer: Renderer2) {
-
+    console.log('starting');
   }
 
   ngAfterViewInit() {

@@ -160,19 +160,19 @@ const views: View[] = [
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  // @ViewChild('imageDiv') imageDiv: ElementRef
-  // @ViewChild('coloredImageEle') coloredImageEle: ElementRef
-  // @ViewChild('ztTag') ztTag: ElementRef<HTMLElement>;
-  // @ViewChild('banner') banner: ElementRef<HTMLElement>;
+  @ViewChild('imageDiv') imageDiv: ElementRef
+  @ViewChild('coloredImageEle') coloredImageEle: ElementRef
+  @ViewChild('ztTag') ztTag: ElementRef<HTMLElement>;
+  @ViewChild('banner') banner: ElementRef<HTMLElement>;
 
-  // videoPlayer: HTMLVideoElement;
+  videoPlayer: HTMLVideoElement;
 
-  // @ViewChild('videoPlayer')
-  // set mainVideoEl(el: ElementRef) {
-  //   setTimeout(() => {
-  //     this.videoPlayer = el.nativeElement;
-  //   }, 0)
-  // }
+  @ViewChild('videoPlayer')
+  set mainVideoEl(el: ElementRef) {
+    setTimeout(() => {
+      this.videoPlayer = el.nativeElement;
+    }, 0)
+  }
 
   hotspotInView: Hotspot[] = [];
   viewToggle = {
@@ -221,140 +221,140 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // $('#zt-container').zoomtour({
-    //   // if true the tags are rotated depending on their position
-    //   rotation: false,
-    //   // zoom out animation easing. Example: easeOutBounce , easeOutBack	
-    //   zoominEasing: '',
-    //   // zoom out animation easing
-    //   zoomoutEasing: ''
-    // });
+    $('#zt-container').zoomtour({
+      // if true the tags are rotated depending on their position
+      rotation: false,
+      // zoom out animation easing. Example: easeOutBounce , easeOutBack	
+      zoominEasing: '',
+      // zoom out animation easing
+      zoomoutEasing: ''
+    });
   }
-  // onTimeupdate(event: any) {
-  //   console.log('current: ', this.videoPlayer.currentTime);
-  //   const view = views.find(view => (
-  //     parseFloat(this.videoPlayer.currentTime.toFixed(1)) >= view.timeStamp[0]
-  //     &&
-  //     parseFloat(this.videoPlayer.currentTime.toFixed(1)) <= view.timeStamp[1]
-  //   ));
+  onTimeupdate(event: any) {
+    console.log('current: ', this.videoPlayer.currentTime);
+    const view = views.find(view => (
+      parseFloat(this.videoPlayer.currentTime.toFixed(1)) >= view.timeStamp[0]
+      &&
+      parseFloat(this.videoPlayer.currentTime.toFixed(1)) <= view.timeStamp[1]
+    ));
 
-  //   if (!view) {
-  //     return;
-  //   }
-  //   // console.log('view: ', view);
-  //   this.videoPlayer.pause();
+    if (!view) {
+      return;
+    }
+    // console.log('view: ', view);
+    this.videoPlayer.pause();
 
-  //   switch (view.viewType) {
-  //     case ViewType.image:
-  //       this.renderImage(view.hotspots);
-  //       this.renderCard(view.hotspots);
-  //       break;
-  //     case ViewType.video:
-  //       this.showHotspotView();
-  //       this.renderHotspots(view.hotspots);
-  //       break;
-  //   }
-  // }
-  // renderCard(hotspots: Hotspot[]) {
-  //   this.showCardView(2500);
-  // }
-  // onHotspotClick(hotspot: Hotspot) {
-  //   console.log(hotspot);
-  //   if (hotspot.isNoOp) {
-  //     return;
-  //   }
-  //   // this.banner.nativeElement.style.display = "none";
-  //   this.banner.nativeElement.classList.remove('show'); //for smooth 
-  //   if (hotspot.id === 'chiller') {
-  //     this.ztTag.nativeElement.click();
-  //     this.renderTransitionedImage();
-  //     return;
-  //   }
+    switch (view.viewType) {
+      case ViewType.image:
+        this.renderImage(view.hotspots);
+        this.renderCard(view.hotspots);
+        break;
+      case ViewType.video:
+        this.showHotspotView();
+        this.renderHotspots(view.hotspots);
+        break;
+    }
+  }
+  renderCard(hotspots: Hotspot[]) {
+    this.showCardView(2500);
+  }
+  onHotspotClick(hotspot: Hotspot) {
+    console.log(hotspot);
+    if (hotspot.isNoOp) {
+      return;
+    }
+    // this.banner.nativeElement.style.display = "none";
+    this.banner.nativeElement.classList.remove('show'); //for smooth 
+    if (hotspot.id === 'chiller') {
+      this.ztTag.nativeElement.click();
+      this.renderTransitionedImage();
+      return;
+    }
 
-  //   this.hideHotspotView();
-  //   setTimeout(() => {
-  //     this.hotspotInView.length = 0;
-  //   }, 1000)
+    this.hideHotspotView();
+    setTimeout(() => {
+      this.hotspotInView.length = 0;
+    }, 1000)
 
-  //   switch (hotspot.type) {
-  //     case HotspotType.image:
-  //       // this.renderImage(hotspot);
-  //       break;
-  //     case HotspotType.video:
-  //       this.playHotspotVideo(hotspot);
-  //       break;
-  //   }
-  // }
-  // renderImage(hotspots: Hotspot[]) {
-  //   console.log('imageDiv', this.imageDiv);
+    switch (hotspot.type) {
+      case HotspotType.image:
+        // this.renderImage(hotspot);
+        break;
+      case HotspotType.video:
+        this.playHotspotVideo(hotspot);
+        break;
+    }
+  }
+  renderImage(hotspots: Hotspot[]) {
+    console.log('imageDiv', this.imageDiv);
 
-  //   this.showImageView();
-  //   setTimeout(() => {
-  //     this.showHotspotView();
-  //     this.renderHotspots(hotspots);
-  //   }, 1500)
-  // }
-  // renderTransitionedImage() {
-  //   this.hideHotspotView();
-  //   this.hideCardView();
-  //   setTimeout(() => {
-  //     this.viewToggle.showTransitionedImage = true;
-  //     this.coloredImageEle.nativeElement.classList.add('show'); //for smooth coloring on back
-  //   }, 1200)
-  // }
-  // deRenderTransitionedImage() {
-  //   this.showHotspotView();
-  //   this.showCardView(100);
-  //   this.coloredImageEle.nativeElement.classList.remove('show'); //for smooth coloring on back
-  // }
-  // playHotspotVideo(hotspot: Hotspot) {
-  //   console.log('playing...');
-  //   this.hideHotspotView();
-  //   this.hideImageView();
-  //   this.hideCardView()
-  //   this.videoPlayer.currentTime = hotspot.playTime;
-  //   this.videoPlayer.play();
-  // }
-  // renderHotspots(hotspots: Hotspot[]) {
-  //   this.hotspotInView = [...hotspots];
-  // }
+    this.showImageView();
+    setTimeout(() => {
+      this.showHotspotView();
+      this.renderHotspots(hotspots);
+    }, 1500)
+  }
+  renderTransitionedImage() {
+    this.hideHotspotView();
+    this.hideCardView();
+    setTimeout(() => {
+      this.viewToggle.showTransitionedImage = true;
+      this.coloredImageEle.nativeElement.classList.add('show'); //for smooth coloring on back
+    }, 1200)
+  }
+  deRenderTransitionedImage() {
+    this.showHotspotView();
+    this.showCardView(100);
+    this.coloredImageEle.nativeElement.classList.remove('show'); //for smooth coloring on back
+  }
+  playHotspotVideo(hotspot: Hotspot) {
+    console.log('playing...');
+    this.hideHotspotView();
+    this.hideImageView();
+    this.hideCardView()
+    this.videoPlayer.currentTime = hotspot.playTime;
+    this.videoPlayer.play();
+  }
+  renderHotspots(hotspots: Hotspot[]) {
+    this.hotspotInView = [...hotspots];
+  }
 
-  // onTabClick(id: string) {
-  //   if (id === 'tab1') {
-  //     this.tabs.tab1.shouldShow = true;
-  //     this.tabs.tab2.shouldShow = false;
-  //     this.tabs.tab3.shouldShow = false;
-  //     this.activeTabList = this.tabs.tab1.list;
-  //   } else if ((id === 'tab2')) {
-  //     this.tabs.tab2.shouldShow = true;
-  //     this.tabs.tab1.shouldShow = false;
-  //     this.tabs.tab3.shouldShow = false;
-  //     this.activeTabList = this.tabs.tab2.list;
-  //   } else {
-  //     this.tabs.tab2.shouldShow = false;
-  //     this.tabs.tab1.shouldShow = false;
-  //     this.tabs.tab3.shouldShow = true;
-  //     this.activeTabList = this.tabs.tab3.list;
-  //   }
-  // }
-  // showCardView(delay: number) {
-  //   setTimeout(() => {
-  //     this.viewToggle.showCard = true;
-  //   }, delay)
-  // }
-  // hideCardView() {
-  //   this.viewToggle.showCard = false;
-  // }
-  // hideHotspotView() {
-  //   this.viewToggle.showHotspot = false;
-  // }
-  // showHotspotView() {
-  //   this.viewToggle.showHotspot = true;
-  // }
-  // hideImageView() {
-  //   this.viewToggle.showImageDiv = false;
-  // }
-  // showImageView() {
-  //   this.viewToggle.showImageDiv = true;
-  // }
+  onTabClick(id: string) {
+    if (id === 'tab1') {
+      this.tabs.tab1.shouldShow = true;
+      this.tabs.tab2.shouldShow = false;
+      this.tabs.tab3.shouldShow = false;
+      this.activeTabList = this.tabs.tab1.list;
+    } else if ((id === 'tab2')) {
+      this.tabs.tab2.shouldShow = true;
+      this.tabs.tab1.shouldShow = false;
+      this.tabs.tab3.shouldShow = false;
+      this.activeTabList = this.tabs.tab2.list;
+    } else {
+      this.tabs.tab2.shouldShow = false;
+      this.tabs.tab1.shouldShow = false;
+      this.tabs.tab3.shouldShow = true;
+      this.activeTabList = this.tabs.tab3.list;
+    }
+  }
+  showCardView(delay: number) {
+    setTimeout(() => {
+      this.viewToggle.showCard = true;
+    }, delay)
+  }
+  hideCardView() {
+    this.viewToggle.showCard = false;
+  }
+  hideHotspotView() {
+    this.viewToggle.showHotspot = false;
+  }
+  showHotspotView() {
+    this.viewToggle.showHotspot = true;
+  }
+  hideImageView() {
+    this.viewToggle.showImageDiv = false;
+  }
+  showImageView() {
+    this.viewToggle.showImageDiv = true;
+  }
 }
